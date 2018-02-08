@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    {% for tag in tags%}
+    <div class = "tagname">
+        <a href = "{% url 'tags_detail' tag.id %}">
+            <h3>{{tag.Tag | capfirst}}</h3>
+        </a>
+        <p>{{tag.Category}}</p>
+        <p class = "hidden">{{tag.TagWiki}}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
