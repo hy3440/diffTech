@@ -1,1 +1,1 @@
-web: gunicorn djangotest.wsgi --log-file -
+web: gunicorn stackoverflowtags_v1.wsgi --log-file -
