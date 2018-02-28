@@ -6,10 +6,10 @@ from .models import tags
 # Create your views here.
 
 def home(request):
-    #Tags = tags.objects.all()
+    Tags = tags.objects.all()
     
     #return render(request, 'home.html',{'tags':Tags})
-    return render(request, 'home.html',{'tag':'bb8'})
+    return render(request, 'home.html',{'tag':Tags})
 
 def tag_detail(request, id):
     try:
