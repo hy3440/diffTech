@@ -78,7 +78,13 @@ WSGI_APPLICATION = 'stackoverflowtags.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'd499fl8jkqgj0o',
+        'HOST':'ec2-54-243-31-34.compute-1.amazonaws.com',
+        'USER':'User',
+        'PORT':'5432',
+        'PASSWORD':'7217399a47bde7a83f5caa1e6db165677e23fe94222e7cb8f05f8350421f4f54',
+        
+
     }
 }
 
