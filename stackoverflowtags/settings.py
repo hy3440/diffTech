@@ -25,7 +25,7 @@ SECRET_KEY = '@9_mix@!muw&k2eek@h15xup-z_u&b943q!uit6yv*hy_=_b&)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://simitagsheroku.herokuapp.com']
 
 
 # Application definition
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'stackoverflowtags.urls'
@@ -119,3 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Modified by Lynn following heroku deployment tutorial
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
