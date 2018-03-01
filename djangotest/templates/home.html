@@ -6,6 +6,7 @@
 <div>
 	this is above tag under div
     {% for tag in tags%}
+    inside the loop
     <div class = "tagname">
         <a href = "{% url 'tags_detail' tag.id %}">
             <h3>{{tag.Tag | capfirst}}  tag name here </h3>

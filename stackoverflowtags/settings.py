@@ -78,7 +78,6 @@ WSGI_APPLICATION = 'stackoverflowtags.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        
         'NAME': 'd499fl8jkqgj0o',
         'HOST':'ec2-54-243-31-34.compute-1.amazonaws.com',
         'USER':'vocszpuquitroq',

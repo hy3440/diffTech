@@ -1,0 +1,1087 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.7
+-- Dumped by pg_dump version 9.6.7
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE auth_group OWNER TO lint0011;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_id_seq OWNER TO lint0011;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_group_permissions OWNER TO lint0011;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_permissions_id_seq OWNER TO lint0011;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE auth_permission OWNER TO lint0011;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_permission_id_seq OWNER TO lint0011;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE auth_user OWNER TO lint0011;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_groups OWNER TO lint0011;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_groups_id_seq OWNER TO lint0011;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_id_seq OWNER TO lint0011;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_user_permissions OWNER TO lint0011;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_user_permissions_id_seq OWNER TO lint0011;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE django_admin_log OWNER TO lint0011;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_admin_log_id_seq OWNER TO lint0011;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE django_content_type OWNER TO lint0011;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_content_type_id_seq OWNER TO lint0011;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_migrations OWNER TO lint0011;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE django_migrations_id_seq OWNER TO lint0011;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE django_session OWNER TO lint0011;
+
+--
+-- Name: djangotest_tags; Type: TABLE; Schema: public; Owner: lint0011
+--
+
+CREATE TABLE djangotest_tags (
+    id integer NOT NULL,
+    "Tag" character varying(50) NOT NULL,
+    "Category" character varying(50) NOT NULL,
+    "TagWiki" text NOT NULL
+);
+
+
+ALTER TABLE djangotest_tags OWNER TO lint0011;
+
+--
+-- Name: djangotest_tags_id_seq; Type: SEQUENCE; Schema: public; Owner: lint0011
+--
+
+CREATE SEQUENCE djangotest_tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE djangotest_tags_id_seq OWNER TO lint0011;
+
+--
+-- Name: djangotest_tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: lint0011
+--
+
+ALTER SEQUENCE djangotest_tags_id_seq OWNED BY djangotest_tags.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_migrations ALTER COLUMN id SET DEFAULT nextval('django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: djangotest_tags id; Type: DEFAULT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY djangotest_tags ALTER COLUMN id SET DEFAULT nextval('djangotest_tags_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can add group	2	add_group
+5	Can change group	2	change_group
+6	Can delete group	2	delete_group
+7	Can add permission	3	add_permission
+8	Can change permission	3	change_permission
+9	Can delete permission	3	delete_permission
+10	Can add user	4	add_user
+11	Can change user	4	change_user
+12	Can delete user	4	delete_user
+13	Can add content type	5	add_contenttype
+14	Can change content type	5	change_contenttype
+15	Can delete content type	5	delete_contenttype
+16	Can add session	6	add_session
+17	Can change session	6	change_session
+18	Can delete session	6	delete_session
+19	Can add tags	7	add_tags
+20	Can change tags	7	change_tags
+21	Can delete tags	7	delete_tags
+\.
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('auth_permission_id_seq', 21, true);
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('auth_user_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('django_admin_log_id_seq', 1, false);
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	group
+3	auth	permission
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	djangotest	tags
+\.
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('django_content_type_id_seq', 7, true);
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2018-03-01 17:57:44.211+08
+2	auth	0001_initial	2018-03-01 17:57:45.9+08
+3	admin	0001_initial	2018-03-01 17:57:46.211+08
+4	admin	0002_logentry_remove_auto_add	2018-03-01 17:57:46.227+08
+5	contenttypes	0002_remove_content_type_name	2018-03-01 17:57:46.305+08
+6	auth	0002_alter_permission_name_max_length	2018-03-01 17:57:46.321+08
+7	auth	0003_alter_user_email_max_length	2018-03-01 17:57:46.352+08
+8	auth	0004_alter_user_username_opts	2018-03-01 17:57:46.367+08
+9	auth	0005_alter_user_last_login_null	2018-03-01 17:57:46.383+08
+10	auth	0006_require_contenttypes_0002	2018-03-01 17:57:46.383+08
+11	auth	0007_alter_validators_add_error_messages	2018-03-01 17:57:46.409+08
+12	auth	0008_alter_user_username_max_length	2018-03-01 17:57:46.666+08
+13	djangotest	0001_initial	2018-03-01 17:57:46.76+08
+14	djangotest	0002_auto_20180208_1129	2018-03-01 17:57:47.576+08
+15	sessions	0001_initial	2018-03-01 17:57:47.843+08
+\.
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('django_migrations_id_seq', 15, true);
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY django_session (session_key, session_data, expire_date) FROM stdin;
+\.
+
+
+--
+-- Data for Name: djangotest_tags; Type: TABLE DATA; Schema: public; Owner: lint0011
+--
+
+COPY djangotest_tags (id, "Tag", "Category", "TagWiki") FROM stdin;
+1	javascript	language	JavaScript is a high-level, dynamic, multi-paradigm, weakly-typed language used for both client-side and server-side scripting
+2	java	language	Java is a general-purpose object-oriented programming language designed to be used in conjunction with the Java Virtual Machine
+3	c#	language	C# is an object-oriented programming language that is designed for building a variety of applications that run on the .NET Framework
+4	php	language	PHP is a widely used, high-level, dynamic, object-oriented and interpreted scripting language primarily designed for server-side web development.
+5	android	os	Android is Google's mobile operating system, used for programming or developing digital devices
+6	jquery	library	jQuery is a popular cross-browser JavaScript library that facilitates DOM traversal, event handling, animations, and AJAX interactions by minimizing the discrepancies across browsers and providing an easy-to-use API.
+7	python	language	Python is a dynamic and strongly typed programming language designed to emphasize usability
+8	html	language	HTML is the standard markup language used for structuring web pages and formatting content
+9	ios	os	iOS is the mobile operating system running on the Apple iPhone, iPod touch, and iPad
+10	c++	language	C++ is a general-purpose programming language
+11	css	language	CSS is a style sheet language used for describing the look and formatting of HTML, XML documents and SVG elements including colors, layout, and fonts.
+12	mysql	dbms	MySQL is a free, open-source Relational Database Management System that uses Structured Query Language.
+13	sql	language	Structured Query Language is a language for querying databases
+14	asp.net	framework	ASP.NET is a Microsoft web application development framework that allows programmers to build dynamic web sites, web applications and web services
+15	ruby-on-rails	framework	Ruby on Rails is an open-source full-stack web application framework written in Ruby
+16	objective-c	language	This tag should be used only on questions that are about Objective-C features or depend on code in the language
+17	.net	framework	The .NET framework is a software framework designed mainly for the Microsoft Windows operating system
+18	sql-server	dbms	Microsoft SQL Server is a relational database management system
+19	c	language	C is a general-purpose computer programming language used for operating systems, libraries, games and other high performance work
+20	angularjs	framework	Use for questions about AngularJS, the open-source JavaScript framework
+21	arrays	structure	An array is an ordered data structure consisting of a elements, each identified by one or multiple indexes
+22	asp.net-mvc	framework	The ASP.NET MVC Framework is an open-source web application framework and tooling that implements a the model-view-controller pattern tailored towards web applications and built upon an ASP.NET technology foundation.
+23	iphone	device	do not use this tag unless you are addressing apple's iphone and/or ipod touch specifically. for questions not dependent on hardware, use the tag [ios]. another tag to consider is [cocoa-touch] (but not [cocoa]). please refrain from questions regarding the itunes app store or about itunes connect. if using c#, tag with mono.
+24	json	format	JSON is a textual data interchange format and language-independent
+25	r	language	R is a free, open-source programming language and software environment for statistical computing, bioinformatics, and graphics
+26	node.js	framework	Node.js is an event-based, non-blocking, asynchronous I/O framework that uses Google's V8 JavaScript engine and libuv library
+27	ruby	language	Ruby is a multi-platform open-source, dynamic object-oriented interpreted language, created by Yukihiro Matsumoto in 1995
+28	visual-studio	ide	Visual Studio is an integrated development environment from Microsoft
+29	ajax	technique	AJAX is a technique for creating seamless interactive websites via asynchronous data exchange between client and server
+30	swift	language	Swift is a general-purpose, open-source programming language developed by Apple Inc
+31	regex	pattern	Regular expressions provide a declarative language to match patterns within strings
+32	xml	format	Extensible Markup Language is a flexible, structured document format that defines human- and machine-readable encoding rules
+33	linux	os	GNU is a free and open-source operating system that frequently employs the free and open-source Linux kernel and API's
+34	django	framework	Django is an open-source server-side web application framework, written in Python
+35	windows	os	general windows support is off-topic. support questions may be asked on https://superuser.com windows is an operating system developed by microsoft. use this tag only if your question relates to using windows apis or windows-specific behavior related to your code.
+36	xcode	ide	Xcode is Apple's integrated development environment
+37	wpf	null	Windows Presentation Foundation provides developers with a unified programming model for building modern line-of-business desktop applications on Windows.
+38	excel	object	Only for questions on programming against Excel objects or files, or complex formula development
+39	database	database	A database is an organized data
+40	wordpress	system	WordPress is an open-source content management system running on PHP and MySQL, and often used as a blog engine
+41	spring	framework	The Spring Framework is an open-source framework for application development on the Java platform
+42	vb.net	language	Visual Basic.NET is a multi-paradigm, managed, type-safe, object-oriented computer programming language
+43	eclipse	ide|platform	Eclipse is an open-source IDE and platform for building applications
+44	multithreading	ability	Multi-threading is the ability of a computer or a program to perform work concurrently or asynchronously by utilizing multiple concurrent streams of execution.
+45	twitter-bootstrap	framework	Bootstrap is a front-end framework designed to kick-start development of Web apps and sites
+46	laravel	framework	Laravel is a free, open-source PHP web application framework, created by Taylor Otwell and intended for the development of web applications following the modelÃ¢ÂÂviewÃ¢ÂÂcontroller architectural pattern
+47	git	system	Git is an open-source distributed version control system
+48	bash	shell	Bash, also known as Bourne-again shell and written by Brian Fox, is the default shell in many Linux distributions and on macOS
+49	oracle	dbms	Oracle Server is an Object-relational Database Management System created by Oracle Corporation
+50	mongodb	database	MongoDB is a scalable, high-performance, open-source, document-oriented NoSQL database
+51	vba	language	Visual Basic for Applications is an event-driven, object-oriented programming language for writing macros, used for the entire Office suite as well as other applications
+52	forms	container	A form is essentially a container that can be used to hold any amount of any several data
+53	image	code	The image tag is for questions related to the loading, formatting, saving, compression, and display of images in the context of source code
+54	entity-framework	tool	The ADO.NET Entity Framework is a Object-Relational-Mapping tools for the .NET  Framework, and was first made available with .NET 3.5 SP1.
+55	facebook	platform	Facebook Platform lets developers integrate their apps directly into the Facebook social networking service
+56	osx	os	macOS is the desktop operating system from Apple, found on Macintosh computers
+57	apache	server	Apache is a free, open-source, HTTP web server developed by the Apache Foundation
+58	algorithm	null	An algorithm is a well-defined steps that defines an abstract solution to a problem
+59	winforms	library	WinForms is the informal name given to Windows Forms, a GUI class library in the Microsoft .NET Framework, which provides a user interface for programs designed to run on Windows machines.
+60	postgresql	dbms	PostgreSQL is an open-source, object-relational database management system available for all major platforms including Linux, UNIX, Windows and OS X
+61	matlab	ide	MATLAB is a high-level language and interactive programming environment for numerical computation and visualization developed by MathWorks
+62	performance	null	For questions pertaining to the measurement or improvement of code and application efficiency.
+63	scala	language	Scala is a general purpose programming language principally targeting the Java Virtual Machine
+64	angular	framework	Questions about Angular 2+, the web framework from Google
+65	swing	toolkit	Swing is the primary user-interface toolkit in Java and is shipped with the standard Java SDK
+66	excel-vba	language	Excel-VBA is the dominant programming language for Microsoft Office Excel
+67	hibernate	library	Hibernate is an object-relational mapping library for the Java language enabling developers to utilize POJO-style domain models in their applications in ways extending well beyond Object/Relational Mapping.
+68	sqlite	library	SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine.
+69	linq	component	Language Integrated Query is a Microsoft .NET Framework component that adds native data querying capabilities to .NET languages
+70	qt	framework	Qt is a cross-platform application development framework widely used for the development of application software that can be run on various software and hardware platforms with little or no change in the underlying codebase, while having the power and speed of native applications
+71	maven	tool	Apache Maven is a build automation and project management tool used primarily for Java projects
+72	function	function	A function is a portion of code intended to carry out a single, specific task
+73	.htaccess	file	Directory-level configuration file used by Apache web servers.
+74	symfony	framework	Symfony is an open-source PHP web development framework for PHP 5.5.9+, focusing on easy and fast development cycles and including state-of-the-art design patterns and programming philosophies
+75	shell	term	The term 'shell' refers to a general class of text-based interactive command interpreters most often associated with the Unix & Linux operating systems
+76	perl	language	perl is a procedural, high-level, general-purpose, dynamic programming language, known for its native support of regular expressions and string parsing capabilities. please use this tag for questions about perl in general. for things related to the new (but related) language "perl 6", please use the perl6 tag. for perl-style regular expressions in other languages, use the regex tag, or, if they are based on the pcre library, the pcre tag.
+77	codeigniter	framework	CodeIgniter is an open-source PHP web development framework created by EllisLab Inc and it has been adopted by British Columbia Institute of Technology
+78	rest	style	REST is a style of software architecture for distributed hypermedia systems such as the World Wide Web
+79	web-services	null	A web service is a software system designed to support interoperable machine-to-machine interaction over the World Wide Web.
+80	api	null	DO NOT USE: Tag with the library you mean,, or something else appropriate instead.
+81	internet-explorer	browser	Internet Explorer is a web browser developed by Microsoft and is included as Microsoft Windows.
+82	file	null	a block of arbitrary information, or resource for storing information, accessible by the string-based name or path. files are available to computer programs and are usually based on some kind of persistent storage.
+83	cordova	framework	Apache Cordova is a framework that allows developers to create cross-platform mobile applications using web technologies like HTML, JavaScript, and CSS.
+84	reactjs	library	React is a JavaScript library for building user interfaces
+85	google-maps	application	Google Maps is a desktop and mobile web mapping service application and technology provided by Google, offering satellite imagery, street maps, and Street View perspectives
+86	uitableview	class	UITableView is a class used for displaying and editing lists of information on iOS
+87	unit-testing	method	Unit testing is a method by which individual units of source code are tested to determine if they are fit for use
+88	class	template	A template for creating new objects that describes the common state(s) and behavior(s)
+89	powershell	utility	PowerShell is a command line and scripting utility for use with Windows
+90	validation	process	Data validation is the process of ensuring that a program operates on clean, correct and useful data.
+91	pandas	library	pandas is a Python library for Panel Data manipulation and analysis, e.g
+92	sockets	endpoint	An endpoint of a bidirectional inter-process communication flow
+93	loops	structure	Loops are a control flow structure in programming in which a series of statements may be executed repeatedly until some condition is met.
+94	google-chrome	browser	Google Chrome is a web browser that uses the Blink rendering engine Questions should relate to development using Chrome or for Chrome
+95	wcf	framework	Windows Communication Foundation is a the .NET Framework that provides a unified programming model for rapidly building service-oriented applications.
+96	csv	format	Comma-Separated Values or Character-Separated Values is a standard flat file database format for storing tabular data in plain text, consisting of an optional header row that lists the table fields delimited by commas or tabs or other delimiter character, followed by one or more rows representing the table records as delimited lists of the values
+97	ubuntu	os	general ubuntu support is off-topic. support questions may be asked on https://askubuntu.com/. ubuntu is a free desktop and server operating system based on debian gnu/linux. note that this is for programming questions specific to ubuntu and http://askubuntu.com is dedicated to answering general ubuntu questions.
+98	actionscript	language	ActionScript is a scripting language used to create Rich Internet Applications, mobiles applications, web applications, etc
+99	sorting	process	Sorting is the process of applying some order to a items.
+100	tsql	extension	T-SQL is the extension of SQL functionality supported by Sybase ASE and Microsoft SQL Server
+\.
+
+
+--
+-- Name: djangotest_tags_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lint0011
+--
+
+SELECT pg_catalog.setval('djangotest_tags_id_seq', 100, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: djangotest_tags djangotest_tags_pkey; Type: CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY djangotest_tags
+    ADD CONSTRAINT djangotest_tags_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: lint0011
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk; Type: FK CONSTRAINT; Schema: public; Owner: lint0011
+--
+
+ALTER TABLE ONLY django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

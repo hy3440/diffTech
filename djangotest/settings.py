@@ -83,7 +83,6 @@ DATABASES = {
         'USER':'vocszpuquitroq',
         'PORT':'5432',
         'PASSWORD':'7217399a47bde7a83f5caa1e6db165677e23fe94222e7cb8f05f8350421f4f54',
-        
 
     }
 }
