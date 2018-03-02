@@ -7,10 +7,10 @@ from .models import tags, id_postidtypes
 
 def home(request):
     Tags = tags.objects.all()
-    id_postidtypes = id_postidtypes.objects.all()
+    Id_postidtypes = id_postidtypes.objects.all()
 
     #return render(request, 'home.html',{'tags':Tags})
-    return render(request, 'home.html',{'id_postidtypes':id_postidtypes})
+    return render(request, 'home.html',{'id_postidtypes':Id_postidtypes})
 
 def tag_detail(request, id):
     try:
