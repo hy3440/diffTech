@@ -6,7 +6,7 @@ from .models import tags, id_postidtypes
 # Create your views here.
 
 def home(request):
-    Tags = tags.objects.all()
+    #Tags = tags.objects.all()
     Id_postidtypes = id_postidtypes.objects.all()
 
     #return render(request, 'home.html',{'tags':Tags})
