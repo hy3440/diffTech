@@ -20,6 +20,5 @@ from djangotest import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',views.home, name = 'home'),
-    #url(r'^tags/(\d+)/',views.tag_detail, name = 'tags_detail'),
+    url(r'^home/',views.home, name = 'home'),
 ]
