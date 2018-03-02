@@ -12,9 +12,11 @@ def home(request):
     #return render(request, 'home.html',{'tags':Tags})
     return render(request, 'home.html',{'id_postidtypes':Id_postidtypes})
 
+"""
 def tag_detail(request, id):
     try:
         tag = tags.objects.get(id = id)
     except tags.DoesNotExist:
         raise Http404('Pet not found')
     return render(request, 'tag_detail.html',{'tag':tag})
+    """
