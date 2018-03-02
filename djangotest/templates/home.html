@@ -1,4 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 <p>print this is bad!</p>
+
+<div>
+    this is above tag under div
+    {% for id_postidtype in id_postidtypes %}
+            <p>inside the loop</p>
+           <h3>{{id_postidtype.postid | capfirst}}   This is the id  </h3>
+            <p>{{id_postidtype.postidtype}}</p>
+    {% endfor %}
+</div>
+
+
 {% endblock %}
