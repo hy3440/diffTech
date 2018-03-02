@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'stackoverflowtags.urls'
+ROOT_URLCONF = 'djangotest.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'stackoverflowtags.wsgi.application'
+WSGI_APPLICATION = 'djangotest.wsgi.application'
 
 
 # Database
