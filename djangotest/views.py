@@ -7,7 +7,7 @@ from .models import tagPairCompare
 
 def home(request):
     #Tags = tags.objects.all()
-    TagPairCompares = tagPairCompare.objects.all()
+    TagPairCompares = tagPairCompare.objects.filter(tag = 'python')
     #return render(request, 'home.html',{'tags':Tags})
     return render(request, 'home.html',{'tagPairCompares':TagPairCompares})
 
