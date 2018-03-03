@@ -11,10 +11,10 @@ def home(request):
     #return render(request, 'home.html',{'tags':Tags})
     return render(request, 'home.html',{'tagPairCompares':TagPairCompares})
 
-def tagcompare(request):
+def tagcompare(request,tag,simi):
     #Tags = tags.objects.all()
-    Tag = request.GET.get('tag','')
-    SimiTag = request.GET.get('simi','')
+    Tag = tag
+    SimiTag = simi
     TagPairCompares = tagPairCompare.objects.filter(tag = Tag, simiTag = SimiTag).values('compare')
     compares = []
     for eachone in TagPairCompares:
