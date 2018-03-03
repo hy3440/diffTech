@@ -1,15 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<p>print this is bad!</p>
 
 <div>
-    this is above tag under div
-    {% for tagPairCompare in tagPairCompares %}
-            <p>inside the loop</p>
-           <h3>{{tagPairCompare.tag | capfirst}}   This is the tag </h3>
-           <h3>{{tagPairCompare.simiTag | capfirst}}   This is the simiTag </h3>
-            
-    {% endfor %}
+	<form action="/inputtag/" method="post">
+    {% csrf_token %}
+    Your tag here:<br>
+  	<input type="text" name="tag"><br>
+    <input type="submit" value="Submit" />
+	</form>  
+    
 </div>
 
 
