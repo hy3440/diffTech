@@ -6,10 +6,8 @@ from .models import tagPairCompare
 # Create your views here.
 
 def home(request):
-    #Tags = tags.objects.all()
-    TagPairCompares = tagPairCompare.objects.filter(tag = 'python').values('tag','simiTag')
-    #return render(request, 'home.html',{'tags':Tags})
-    return render(request, 'home.html',{'tagPairCompares':TagPairCompares})
+    
+    return render(request, 'home.html')
 
 def tagpair(request,Tag):
     
@@ -39,6 +37,14 @@ def tagcompare(request,tag,simi):
         i+=1
     #return render(request, 'home.html',{'tags':Tags})
     return render(request, 'tagcompare.html',{'Features':features})
+
+def inputtag(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        Tag = request.POST.get['tag']
+        TagPairCompares = tagPairCompare.objects.filter(tag = Tag).values('tag','simiTag')
+        return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
 
 """
 def tag_detail(request, id):
