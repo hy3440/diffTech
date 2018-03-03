@@ -2,8 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import tags
+from .models import tagPairCompare
 
-@admin.register(tags)
-class TagsAdmin(admin.ModelAdmin):
-    list_display = ['Tag','Category','TagWiki']
+@admin.register(tagPairCompare)
+class tagPairCompareAdmin(admin.ModelAdmin):
+    list_display = ['tag','simiTag','compare']

@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
-from .models import id_postidtypes
+from .models import tagPairCompare
 
 # Create your views here.
 
 def home(request):
     #Tags = tags.objects.all()
-    Id_postidtypes = id_postidtypes.objects.all()
+    TagPairCompares = tagPairCompare.objects.all()
     #return render(request, 'home.html',{'tags':Tags})
-    return render(request, 'home.html',{'id_postidtypes':Id_postidtypes})
+    return render(request, 'home.html',{'tagPairCompares':TagPairCompares})
 
 """
 def tag_detail(request, id):

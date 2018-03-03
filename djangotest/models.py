@@ -1,11 +1,12 @@
 from django.db import models
 
 # Create your models here.
-class tags(models.Model):
-    Tag = models.CharField(max_length = 50)
-    Category = models.CharField(max_length = 50)
-    TagWiki = models.TextField()
-    
-class id_postidtypes(models.Model):
+class tagPairCompare(models.Model):
+    tag = models.CharField(max_length = 35)
+    simiTag = models.CharField(max_length = 35)
+    compare = models.CharField(max_length = 500) #max length of compare sentence ['usability','1','1','learnability','2','3'] etc.
+        
+
+"""class id_postidtypes(models.Model):
     postid = models.CharField(max_length = 2)
-    postidtype = models.CharField(max_length = 2)
+    postidtype = models.CharField(max_length = 2)"""

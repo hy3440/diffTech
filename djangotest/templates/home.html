@@ -4,10 +4,11 @@
 
 <div>
     this is above tag under div
-    {% for id_postidtype in id_postidtypes %}
+    {% for tagPairCompare in tagPairCompares %}
             <p>inside the loop</p>
-           <h3>{{id_postidtype.postid | capfirst}}   This is the id  </h3>
-            <p>{{id_postidtype.postidtype}}</p>
+           <h3>{{tagPairCompare.tag | capfirst}}   This is the tag </h3>
+           <h3>{{tagPairCompare.simiTag | capfirst}}   This is the simiTag </h3>
+            <p>{{tagPairCompare.compare}} This is the comparison</p>
     {% endfor %}
 </div>
 
