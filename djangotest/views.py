@@ -14,9 +14,11 @@ def home(request):
 def tagcompare(request):
     #Tags = tags.objects.all()
     TagPairCompares = tagPairCompare.objects.filter(tag = 'python', simiTag = 'java').values('compare')
-    compare = TagPairCompares.compare
-    
-    items = compare.strip().split(',')
+    compares = []
+    for eachone in TagPairCompares:
+        compares.append(eachone)
+    Compare = compares[0].compare
+    items = Compare.strip().split(',')
     features = {'python':'good','java':'bad'}
     """
     i = 0 #loop current index
