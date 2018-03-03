@@ -19,8 +19,8 @@ def tagcompare(request):
         compares.append(eachone)
     Compare = compares[0]['compare']
     items = Compare.strip().split(',')
-    features = {'python':'good','java':'bad'}
-    """
+    features = {}
+    
     i = 0 #loop current index
     k = '' #last feature 
     for item in items:
@@ -29,7 +29,7 @@ def tagcompare(request):
             k = item
         else:
             feature[k].append(item)
-        i+=1"""
+        i+=1
     #return render(request, 'home.html',{'tags':Tags})
     return render(request, 'tagcompare.html',{'Features':features})
 
