@@ -13,8 +13,8 @@ def home(request):
 
 def tagcompare(request):
     #Tags = tags.objects.all()
-    Tag = request.GET['tag']
-    SimiTag = request.GET['simi']
+    Tag = request.GET.get('tag','')
+    SimiTag = request.GET.get('simi','')
     TagPairCompares = tagPairCompare.objects.filter(tag = Tag, simiTag = SimiTag).values('compare')
     compares = []
     for eachone in TagPairCompares:
