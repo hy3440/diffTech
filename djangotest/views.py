@@ -42,7 +42,7 @@ def inputtag(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        Tag = request.POST.get['tag']
+        Tag = request.POST.get('tag')
         TagPairCompares = tagPairCompare.objects.filter(tag = Tag).values('tag','simiTag')
         return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
 
