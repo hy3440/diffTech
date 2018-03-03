@@ -17,7 +17,7 @@ def tagcompare(request):
     compares = []
     for eachone in TagPairCompares:
         compares.append(eachone)
-    Compare = compares[0].['compare']
+    Compare = compares[0]['compare']
     items = Compare.strip().split(',')
     features = {'python':'good','java':'bad'}
     """
