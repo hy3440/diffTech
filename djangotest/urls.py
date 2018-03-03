@@ -16,11 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from djangotest import views
-from django.urls import re_path
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.home, name = 'home'),
-    re_path(r'^tagcompare/?([0-9A-Za-z+\-]+)/?([0-9A-Za-z+\-]+)/$',views.tagcompare, name = 'tagcompare'),
+    url(r'^tagcompare/?(\D+)/?(\D+)/$',views.tagcompare, name = 'tagcompare'),
 ]
