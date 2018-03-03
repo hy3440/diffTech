@@ -17,7 +17,7 @@ def tagcompare(request):
     compare = TagPairCompares.compare
     
     items = compare.strip().split(',')
-    features = {'python':'good','java',:'bad'}
+    features = {'python':'good','java':'bad'}
     """
     i = 0 #loop current index
     k = '' #last feature 
