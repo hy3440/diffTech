@@ -14,10 +14,11 @@ def home(request):
 def tagcompare(request):
     #Tags = tags.objects.all()
     TagPairCompares = tagPairCompare.objects.filter(tag = 'python', simiTag = 'java').values('compare')
-    compare = TagPairCompares#['compare']
-    """
+    compare = TagPairCompares.compare
+    
     items = compare.strip().split(',')
-    features = {}
+    features = {'python':'good','java',:'bad'}
+    """
     i = 0 #loop current index
     k = '' #last feature 
     for item in items:
@@ -28,7 +29,7 @@ def tagcompare(request):
             feature[k].append(item)
         i+=1"""
     #return render(request, 'home.html',{'tags':Tags})
-    return render(request, 'tagcompare.html',{'Features':compare})
+    return render(request, 'tagcompare.html',{'Features':features})
 
 """
 def tag_detail(request, id):
