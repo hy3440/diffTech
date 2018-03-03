@@ -28,7 +28,7 @@ def tagcompare(request):
             features[item] = [] #add in new comparable feature
             k = item
         else:
-            feature[k].append(item)
+            features[k].append(item)
         i+=1
     #return render(request, 'home.html',{'tags':Tags})
     return render(request, 'tagcompare.html',{'Features':features})
