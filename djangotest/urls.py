@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.home, name = 'home'),
     url(r'^/?([0-9a-zA-Z+\.\-]+)/$',views.tagpair, name = 'tagpair'),
-    url(r'^/?([0-9a-zA-Z+\.\-]+)/?([0-9a-zA-Z+\.\-]+)/$',views.tagcompare, name = 'tagcompare'),
+    url(r'^/(?P<tag>[0-9a-zA-Z+\.\-]+)/(?P<simi>[0-9a-zA-Z+\.\-]+)/$',views.tagcompare, name = 'tagcompare'),
 ]
