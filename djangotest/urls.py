@@ -21,5 +21,6 @@ from djangotest import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.home, name = 'home'),
-    url(r'^tagcompare/?([0-9a-zA-Z+\.\-]+)/?([0-9a-zA-Z+\.\-]+)/$',views.tagcompare, name = 'tagcompare'),
+    url(r'^/?([0-9a-zA-Z+\.\-]+)/$',views.tagpair, name = 'tagpair'),
+    url(r'^/?([0-9a-zA-Z+\.\-]+)/?([0-9a-zA-Z+\.\-]+)/$',views.tagcompare, name = 'tagcompare'),
 ]

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    
+    {% for tagPairCompare in tagPairCompares %}
+            <p></p>
+           <h3>The tag: {{tagPairCompare.tag | capfirst}}    </h3>
+           <h3>The similar tag: {{tagPairCompare.simiTag | capfirst}}    </h3>
+            
+    {% endfor %}
+</div>
+
+
+{% endblock %}
