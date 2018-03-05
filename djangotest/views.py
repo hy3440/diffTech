@@ -45,7 +45,7 @@ def inputtag(request):
         Tag = request.POST.get('tag')
         TagPairCompares = tagPairCompare.objects.filter(tag = 'python').values('tag','simiTag')
         #return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
-        return render(request, 'tagcompare.html',{'Features':{'visability':[1,2]}})
+        return HttpResponseRedirect('/home/')
 
 """
 def tag_detail(request, id):
