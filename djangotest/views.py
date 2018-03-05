@@ -43,8 +43,8 @@ def inputtag(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         Tag = request.POST.get('tag')
-        TagPairCompares = tagPairCompare.objects.filter(tag = Tag).values('tag','simiTag')
-        return render(request, 'tagpair.html',{'tagPairCompares':{'pyhton':'java'}})
+        TagPairCompares = tagPairCompare.objects.filter(tag = 'python').values('tag','simiTag')
+        return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
 
 """
 def tag_detail(request, id):
