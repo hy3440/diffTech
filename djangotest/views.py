@@ -38,20 +38,8 @@ def tagcompare(request,tag,simi):
     #return render(request, 'home.html',{'tags':Tags})
     return render(request, 'tagcompare.html',{'Features':features})
 
-def inputtag(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        #Tag = request.POST.get('tag')
-        #TagPairCompares = tagPairCompare.objects.filter(tag = 'python').values('tag','simiTag')
-        #return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
-        return render('home-basic.html')
-
-"""
-def tag_detail(request, id):
-    try:
-        tag = tags.objects.get(id = id)
-    except tags.DoesNotExist:
-        raise Http404('Pet not found')
-    return render(request, 'tag_detail.html',{'tag':tag})
-    """
+def selecttag(request):
+    if request.method == "POST":
+        Tag = request.POST.get('tag')
+        TagPairCompares = tagPairCompare.objects.filter(tag = Tag).values('tag','simiTag')
+        return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})

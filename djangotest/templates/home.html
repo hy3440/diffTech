@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% block content %}
 
+{% block content %}
+<div>it sucks!</div>
 <div>
-	<form action="/inputtag/" method="post">
+	<form action="/selecttag/" method="post">
     {% csrf_token %}
     Your tag here:<br>
   	<input type="text" name="tag"><br>

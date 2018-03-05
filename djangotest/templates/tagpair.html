@@ -5,11 +5,11 @@
     
     {% for tagPairCompare in tagPairCompares %}
             <p></p>
-            {% with "/"|add:tagPairCompare.simiTag as simiTag %}
-           <a href = "{% url 'tagcompare' tagPairCompare.tag  simiTag  %}">click me!</a>
+            
+           <a href = "{% url 'tagcompare' tagPairCompare.tag  tagPairCompare.simiTag %}">Click me!</a>
            <h3>The tag: {{tagPairCompare.tag | capfirst}}    </h3>
-           <h3>The similar tag: {{tagPairCompare.simiTag | capfirst}}    </h3>
-           	{% endwith %}
+           <h3>The similar tag: {{ tagPairCompare.simiTag| capfirst}}    </h3>
+           	
     {% endfor %}
 </div>
 
