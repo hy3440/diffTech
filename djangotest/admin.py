@@ -2,8 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import tagPairCompare
+from .models import tagpaircompare
 
-@admin.register(tagPairCompare)
+@admin.register(tagpaircompare)
 class tagPairCompareAdmin(admin.ModelAdmin):
-    list_display = ['tag','simiTag','compare']
+    list_display = ['tag','simitag','compare']

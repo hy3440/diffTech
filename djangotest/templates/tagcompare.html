@@ -1,19 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
 
-<div>
-   
-    {% for key,value in Features.items %}
-           <p>inside the loop</p>
-           <h3>{{key | capfirst}}   </h3>
-           {% for item in value %}
-           <h3>{{item | capfirst}}   </h3>
-           {% endfor %}
-            
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+    <th>Features</th>
+    {% for key,value in tagpair.items %}
+
+    <th>{{key}}</th>
+    <th>{{value}}</th>
     {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+  	    {% for key,value in Features.items %}
+  	    <tr>
+  	    <th scope="col">{{key | capfirst}}</th>
+	       {% for item in value %}
+	       <td scope="col">{{item | capfirst}}</td>
+	       {% endfor %}
+        </tr> 
+    	{% endfor %}
+  </tbody>
+ </table>
 
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
 </div>
+
 <a href="{% url 'home' %}" class="btn btn-default">Go back home</a>
 
 

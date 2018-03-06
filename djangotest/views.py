@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
-from .models import tagPairCompare
+from .models import tagpaircompare
 
 # Create your views here.
 
@@ -11,19 +11,19 @@ def home(request):
 
 def tagpair(request,Tag):
     
-    TagPairCompares = tagPairCompare.objects.filter(tag = Tag).values('tag','simiTag')
+    TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('tag','simitag')
     return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
 
 def tagcompare(request,tag,simi):
     #Tags = tags.objects.all()
     Tag = tag
     SimiTag = simi
-    TagPairCompares = tagPairCompare.objects.filter(tag = Tag, simiTag = SimiTag).values('compare')
+    TagPairCompares = tagpaircompare.objects.filter(tag = Tag, simitag = SimiTag).values('compare')
     compares = []
     for eachone in TagPairCompares:
         compares.append(eachone)
     Compare = compares[0]['compare']
-    items = Compare.strip().split(',')
+    items = Compare.strip().split()
     features = {}
     
     i = 0 #loop current index
@@ -36,10 +36,12 @@ def tagcompare(request,tag,simi):
             features[k].append(item)
         i+=1
     #return render(request, 'home.html',{'tags':Tags})
-    return render(request, 'tagcompare.html',{'Features':features})
+    tagpair = {}
+    tagpair[Tag] = SimiTag
+    return render(request, 'tagcompare.html',{'Features':features,'tagpair':tagpair})
 
 def selecttag(request):
     if request.method == "POST":
         Tag = request.POST.get('tag')
-        TagPairCompares = tagPairCompare.objects.filter(tag = Tag).values('tag','simiTag')
+        TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('tag','simitag')
         return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})

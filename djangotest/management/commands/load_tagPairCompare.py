@@ -1,6 +1,6 @@
 import csv
 from django.core.management import BaseCommand
-from djangotest.models import tagPairCompare
+from djangotest.models import tagpaircompare
 
 ALREADY_LOADED_ERROR_MESSAGE = """
 If you need to reload the tagPairCompare model from the CSV file,
@@ -14,7 +14,7 @@ class Command(BaseCommand):
     help = "Loads data from tagpair_compare.csv into our tagPairCompare model"
 
     def handle(self, *args, **options):
-        if tagPairCompare.objects.exists():
+        if tagpaircompare.objects.exists():
             print('tagPairCompare already loaded...exiting.')
             print(ALREADY_LOADED_ERROR_MESSAGE)
             return
@@ -22,10 +22,21 @@ class Command(BaseCommand):
         with open('tagpair_compare.csv','r') as csvfile:
         	reader = csv.reader(csvfile)
         	for row in reader:
-        		print(row)
-        		
-        		TagPairCompare = tagPairCompare()
-        		TagPairCompare.tag = row[0]
-        		TagPairCompare.simiTag = row[1]
-        		TagPairCompare.compare = ','.join(row[2:])
-        		TagPairCompare.save()
+                    print(row)
+                    TagPairCompare = tagpaircompare()
+                    TagPairCompare.tag = row[0]
+                    TagPairCompare.simitag = row[1]
+                    for item in row[2:]:
+                        print(item)
+                        if item != '':
+                            TagPairCompare.compare += item
+                            TagPairCompare.compare += ','
+                        else:
+                            break
+                    print(TagPairCompare.compare)
+                    TagPairCompare.compare = TagPairCompare.compare.replace(',',' ')
+                    print(TagPairCompare.compare)
+                    TagPairCompare.save()
+
+
+                
