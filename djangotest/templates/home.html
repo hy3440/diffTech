@@ -7,26 +7,28 @@
 
 <div class="container">
   <div class="row align-items-center">
-    <div class="col-sm">
+    <div class="col">
     </div>
-    <div class="col-sm">
+    <div class="col-6 align-items-center">
       
 <form action="/selecttag/" method="post">
 {% csrf_token %}
   <div class="form-group">
-  	<p class = "text-center">Please input your tag here: </p>
+  	<p class = "text-center" style = "font-size: 2rem; font-weight: 200;">Please input your tag here: </p>
     <input class="form-control form-control-lg" name = "tag" type="text" placeholder="Enter a tag name"> 
   </div>
   <div class="container">
-  	<div class="d-flex justify-content-center">
-  	<button type="submit" class="btn btn-primary">Submit</button>
+  	<div class="row d-flex justify-content-center">
+
+<button  type="submit" class="list-group-item list-group-item-action" style="width:160px"><h5 class = "text-center" style = "font-size: 1rem;">Submit</h5></button>
+
   	</div>
   </div>
   
 </form> 
 
     </div>
-    <div class="col-sm">
+    <div class="col">
     </div>
   </div>
 </div>
