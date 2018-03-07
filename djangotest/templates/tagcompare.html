@@ -8,9 +8,9 @@
     <div class="col-sm">
 
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
+<table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
+  
+    <tr style = "background-color:#0c5460; ">
     <th>Features</th>
     {% for key,value in tagpair.items %}
 
@@ -18,13 +18,13 @@
     <th style = "text-align:center">{{value}}</th>
     {% endfor %}
     </tr>
-  </thead>
+  
   <tbody>
   	    {% for key,value in Features.items %}
   	    <tr>
-  	    <th scope="col">{{key | capfirst}}</th>
+  	    <th scope="col" style = "border-top:3px solid #12090e">{{key | capfirst}}</th>
 	       {% for item in value %}
-	       <td scope="col" style = "text-align:center">{{item | capfirst}}</td>
+	       <td scope="col" style = "text-align:center;border-top:3px solid #12090e">{{item | capfirst}}</td>
 	       {% endfor %}
         </tr> 
     	{% endfor %}
@@ -32,7 +32,7 @@
  </table>
 
 		  <div class="row d-flex justify-content-center">
-				<a  href="{% url 'home' %}" class="list-group-item list-group-item-action" style="width:170px;padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1rem;">Return To Home</h5></a>
+				<a  href="{% url 'home' %}" class="list-group-item list-group-item-action" style="background-color: rgba(0,0,0,.075);width:170px;padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1rem;color: #808a8c;">Return To Home</h5></a>
 		  </div>
 
     </div>

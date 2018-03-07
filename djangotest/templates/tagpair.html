@@ -12,7 +12,7 @@
      {% for tagPairCompare in tagPairCompares %}
             
             
-           <a href = "{% url 'tagcompare' tagPairCompare.tag  tagPairCompare.simitag %}" class="list-group-item list-group-item-action" style = "text-align: center">{{ tagPairCompare.simitag | capfirst}} </a>
+           <a href = "{% url 'tagcompare' tagPairCompare.tag  tagPairCompare.simitag %}" class="list-group-item list-group-item-action" style = "text-align: center;background-color : #5C0029;border:2px solid rgb(18, 9, 14);color:#ffffff;">{{ tagPairCompare.simitag | capfirst}} </a>
  
            	
     {% endfor %}
