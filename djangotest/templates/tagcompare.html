@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container">
-  <div class="row align-items-center">
+  <div class="row align-items-center" style = "height: 600px;">
     <div class="col-sm">
     </div>
     <div class="col-sm">
@@ -14,8 +14,8 @@
     <th>Features</th>
     {% for key,value in tagpair.items %}
 
-    <th>{{key}}</th>
-    <th>{{value}}</th>
+    <th style = "text-align:center">{{key}}</th>
+    <th style = "text-align:center">{{value}}</th>
     {% endfor %}
     </tr>
   </thead>
@@ -24,14 +24,16 @@
   	    <tr>
   	    <th scope="col">{{key | capfirst}}</th>
 	       {% for item in value %}
-	       <td scope="col">{{item | capfirst}}</td>
+	       <td scope="col" style = "text-align:center">{{item | capfirst}}</td>
 	       {% endfor %}
         </tr> 
     	{% endfor %}
   </tbody>
  </table>
 
-<a  href="{% url 'home' %}" class="list-group-item list-group-item-action"><h5 class = "text-center" style = "font-size: 0.9rem;">Return To Home</h5></a>
+		  <div class="row d-flex justify-content-center">
+				<a  href="{% url 'home' %}" class="list-group-item list-group-item-action" style="width:170px;padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1rem;">Return To Home</h5></a>
+		  </div>
 
     </div>
     <div class="col-sm">

@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container">
-  <div class="row align-items-center">
+  <div class="row align-items-center" style = "height: 600px;">
     <div class="col-sm">
     </div>
     <div class="col-sm">    
@@ -12,7 +12,7 @@
      {% for tagPairCompare in tagPairCompares %}
             
             
-           <a href = "{% url 'tagcompare' tagPairCompare.tag  tagPairCompare.simitag %}" class="list-group-item list-group-item-action">{{ tagPairCompare.simitag | capfirst}} </a>
+           <a href = "{% url 'tagcompare' tagPairCompare.tag  tagPairCompare.simitag %}" class="list-group-item list-group-item-action" style = "text-align: center">{{ tagPairCompare.simitag | capfirst}} </a>
  
            	
     {% endfor %}
