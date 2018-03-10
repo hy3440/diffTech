@@ -1,31 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
 
+
 <div class="container">
-  <div class="row align-items-center" style = "height: 600px;">
-    <div class="col-sm">
+  <div class="row align-items-center" style = "margin-top: 40px;">
+    <div class="col">
     </div>
-    <div class="col-sm">    
+    <div class="col-8">    
+
+
+
+    {% for key,value in ori_tagwikis.items %}
+      <p style = "    
+      color: #fdc317;
+    font-size: 3rem;
+    font-family: fantasy;"> {{key|capfirst}}</p>
+      <p style = "color:#b78b0a">{{value|capfirst}}</p>
+
+
+    <br>
 
     <div class="list-group">
 
-     {% for tagPairCompare in tagPairCompares %}
-            
-            
-           <a href = "{% url 'tagcompare' tagPairCompare.tag  tagPairCompare.simitag %}" class="list-group-item list-group-item-action" style = "text-align: center;background-color : #5C0029;border:2px solid rgb(18, 9, 14);color:#ffffff;">{{ tagPairCompare.simitag | capfirst}} </a>
- 
-           	
+
+            <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
+              
+                <tr style = "background-color:#0c5460; ">
+                <th style = "width: 124px;text-align:center;">Similar Tag</th>
+                <th style = "text-align:center">Tag Wiki</th>
+                </tr>
+              
+              <tbody>
+                    {% for simikey,value in tagsWikiDicts.items %}
+                    <tr>
+                    <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a href = "{% url 'tagcompare' key  simikey %}" style = "color:#ffffff">{{simikey | capfirst}}</a></th>
+                     <td scope="col" style = "text-align:left;border-top:3px solid #12090e">{{ value | capfirst}}</td>
+                    </tr> 
+                  {% endfor %}
+              </tbody>
+             </table>
+
+
+    
+    </div>
     {% endfor %}
 
-
-
-
-
     </div>
-
-
-    </div>
-    <div class="col-sm">
+    <div class="col">
     </div>
   </div>
 </div>

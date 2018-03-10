@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 from .models import tagpaircompare
+from stackapi import StackAPI 
 
 # Create your views here.
 
@@ -11,12 +12,34 @@ def home(request):
 
 def tagpair(request,Tag):
 
+    SITE = StackAPI('stackoverflow')
+    ori_tag = [Tag]
 
-    TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('tag','simitag')
+    TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('simitag')
     if not TagPairCompares:
         raise Http404("Tag pair does not exist")
     
-    return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
+    tagsFetch = []
+    for tag in TagPairCompares:
+        tagname = tag['simitag']
+        tagsFetch.append(tagname)
+    tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
+    tagsWikiDict = {}
+    for item in tagswiki['items']:
+        excerpt = item['excerpt']
+        excerpt = excerpt.strip().split('. ')[0]
+        if '.&' in excerpt:
+            excerpt = excerpt.split('.&')[0]
+        tagsWikiDict[item['tag_name']] = excerpt
+
+    ori_tagwiki = {}
+    ori_wiki = SITE.fetch('tags/{tags}/wikis',tags = ori_tag)['items'][0]['excerpt']
+    ori_wiki = ori_wiki.strip().split('. ')[0]
+    if '.&' in ori_wiki:
+        ori_wiki = excerpt.split('.&')[0]
+    ori_tagwiki[Tag] = ori_wiki
+    
+    return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 def tagcompare(request,tag,simi):
     #Tags = tags.objects.all()
@@ -55,9 +78,33 @@ def selecttag(request):
     if request.method == "POST":
 
         Tag = request.POST.get('tag')
-        TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('tag','simitag')
 
+        SITE = StackAPI('stackoverflow')
+        ori_tag = [Tag]
+
+        TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('simitag')
         if not TagPairCompares:
             raise Http404("Tag pair does not exist")
 
-        return render(request, 'tagpair.html',{'tagPairCompares':TagPairCompares})
+        tagsFetch = []
+        for tag in TagPairCompares:
+            tagname = tag['simitag']
+            tagsFetch.append(tagname)
+        tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
+        tagsWikiDict = {}
+
+        for item in tagswiki['items']:
+            excerpt = item['excerpt']
+            excerpt = excerpt.strip().split('. ')[0]
+            if '.&' in excerpt:
+                excerpt = excerpt.split('.&')[0]
+            tagsWikiDict[item['tag_name']] = excerpt
+
+        ori_tagwiki = {}
+        ori_wiki = SITE.fetch('tags/{tags}/wikis',tags = ori_tag)['items'][0]['excerpt']
+        ori_wiki = ori_wiki.strip().split('. ')[0]
+        if '.&' in ori_wiki:
+            ori_wiki = excerpt.split('.&')[0]
+        ori_tagwiki[Tag] = ori_wiki
+
+        return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
