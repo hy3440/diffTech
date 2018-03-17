@@ -22,18 +22,25 @@ class Command(BaseCommand):
 
 		else: 
 			print("Loading tagpair data ...")
-			f = open('tagpairs.txt')
+			f = open('tagpair_db.txt')
 			lines = f.readlines()
 			f.close()
 
-			pairDict = {}
+			
 
 			for line in lines:
-				pair = line.strip().split()
+				pair = line.strip().split('|', 1)
 				Tagpair = tagpair()
-				Tagpair.tag = pair[0]
-				Tagpair.simitag = pair[1]
-				Tagpair.save()
+				print(pair[0])
+				print(pair[1])
+				
+				if len(pair[1])>600:
+					print('Exceed max length of 600: '+ pair[0])
+					continue
+				else:
+					Tagpair.tag = pair[0]
+					Tagpair.simitag = pair[1]
+					Tagpair.save()
 
 
 

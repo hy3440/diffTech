@@ -33,8 +33,14 @@
               <tbody>
                     {% for simikey,value in tagsWikiDicts.items %}
                     <tr>
+                    {% if value.1 %}
                     <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a href = "{% url 'tagcompare' key  simikey %}" style = "color:#ffffff">{{simikey | capfirst}}</a></th>
-                     <td scope="col" style = "text-align:left;border-top:3px solid #12090e">{{ value | capfirst}}</td>
+                    {% else %}
+                    <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{simikey | capfirst}}</th>
+                    {% endif %}
+                     <td scope="col" style = "text-align:left;border-top:3px solid #12090e">{{ value.0 | capfirst}}</td>
+                    
+                    
                     </tr> 
                   {% endfor %}
               </tbody>

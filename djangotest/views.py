@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
-from .models import tagpaircompare
+from .models import tagpaircompare, tagpair as TP, relation
 from stackapi import StackAPI 
 
 # Create your views here.
@@ -43,13 +43,20 @@ def tagpair(request,Tag):
 
 def tagcompare(request,tag,simi):
     #Tags = tags.objects.all()
+    """
     Tag = tag
     SimiTag = simi
+    """
 
-    TagPairCompares = tagpaircompare.objects.filter(tag = Tag, simitag = SimiTag).values('compare')
-    if TagPairCompares:
+    tpair = sorted([tag,simi])
+    Tag = tpair[0]
+    SimiTag = tpair[1]
+
+    Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
+    if Relation:
+        """
         compares = []
-        for eachone in TagPairCompares:
+        for eachone in Relation:
             compares.append(eachone)
         Compare = compares[0]['compare']
         items = Compare.strip().split()
@@ -65,13 +72,39 @@ def tagcompare(request,tag,simi):
                 features[k].append(item)
             i+=1
         #return render(request, 'home.html',{'tags':Tags})
-        tagpair = {}
-        tagpair[Tag] = SimiTag
+        """
+        #make a dictionary containing relation of quality, id, example
+        features = {}
+        for eachone in Relation:
+            features[eachone['example_id']] = [eachone['quality'],eachone['example']]
+        
+        SITE = StackAPI('stackoverflow')
+        
+        tagsFetch = [Tag,SimiTag]
+
+        tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
+        tagsWikiDict_tag = {}
+        tagsWikiDict_simi = {}
+        tagsWikiDict = {}
+
+
+        for item in tagswiki['items']:
+            excerpt = item['excerpt']
+            excerpt = excerpt.strip().split('. ')[0]
+            if '.&' in excerpt:
+                excerpt = excerpt.split('.&')[0]
+
+            tagsWikiDict[item['tag_name']] = excerpt
+
+        tagsWikiDict_tag[Tag] = tagsWikiDict[Tag]
+        tagsWikiDict_simi[SimiTag] = tagsWikiDict[SimiTag]
+
+
 
     else:
         raise Http404("Tag pair does not exist")
 
-    return render(request, 'tagcompare.html',{'Features':features,'tagpair':tagpair})
+    return render(request, 'tagcompare.html',{'Features':features,'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
 
 def selecttag(request):
 
@@ -82,14 +115,39 @@ def selecttag(request):
         SITE = StackAPI('stackoverflow')
         ori_tag = [Tag]
 
-        TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('simitag')
+        #TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('simitag')
+
+        #get set of similar tags from tagpair database
+        Tagpair = TP.objects.filter(tag__contains = '\t'+Tag+'\t') | TP.objects.filter(tag__startswith = Tag+'\t')
+        """
         if not TagPairCompares:
             raise Http404("Tag pair does not exist")
+        """
 
+        #make sure tagpair exists
+        if not Tagpair:
+            raise Http404("Tag pair does not exist")
+
+        """
         tagsFetch = []
         for tag in TagPairCompares:
             tagname = tag['simitag']
             tagsFetch.append(tagname)
+        """
+
+        #check the position of the searched tag: 0 or 1 or 2, and locate its similartags
+        oritag = Tagpair[0].tag.split('\t')
+        pos = 0
+        for index, value in enumerate(oritag):
+            if value == Tag:
+                pos = index
+                break
+        simitags = Tagpair[0].simitag.split(',')
+        simitag = simitags[pos]
+        tagsFetch = simitag.split('\t')
+
+        #assign simitags into tagsFetch
+
         tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
         tagsWikiDict = {}
 
@@ -98,7 +156,12 @@ def selecttag(request):
             excerpt = excerpt.strip().split('. ')[0]
             if '.&' in excerpt:
                 excerpt = excerpt.split('.&')[0]
-            tagsWikiDict[item['tag_name']] = excerpt
+            tagp = sorted([Tag, item['tag_name']])
+            if relation.objects.filter(tag = tagp[0], simitag = tagp[1]):
+                tagsWikiDict[item['tag_name']] = [excerpt,1]
+            else:
+                tagsWikiDict[item['tag_name']] = [excerpt,0]
+
 
         ori_tagwiki = {}
         ori_wiki = SITE.fetch('tags/{tags}/wikis',tags = ori_tag)['items'][0]['excerpt']

@@ -20,4 +20,5 @@ class tagpair(models.Model):
     
 """class id_postidtypes(models.Model):
     postid = models.CharField(max_length = 2)
-    postidtype = models.CharField(max_length = 2)"""
+    postidtype = models
+    .CharField(max_length = 2)"""

@@ -1,45 +1,82 @@
 {% extends "base.html" %}
+
 {% block content %}
 
 <div class="container">
-  <div class="row align-items-center" style = "height: 600px;">
-    <div class="col-sm">
+  <div class="row align-items-center" style = "margin-top: 40px;">
+    <div class="col">
     </div>
-    <div class="col-sm">
+    <div class="col-8">    
 
-
-<table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
-  
-    <tr style = "background-color:#0c5460; ">
-    <th>Features</th>
-    {% for key,value in tagpair.items %}
-
-    <th style = "text-align:center">{{key}}</th>
-    <th style = "text-align:center">{{value}}</th>
+  <div class="row justify-content-center">
+    <div class="col">
+    {% for key,value in TagsWikiDict_tag.items %}
+      <p style = "    
+      color: #fdc317;
+    font-size: 3rem;
+    font-family: fantasy;"> {{key|capfirst}}</p>
+      <p style = "color:#b78b0a">{{value|capfirst}}</p>
     {% endfor %}
-    </tr>
-  
-  <tbody>
-  	    {% for key,value in Features.items %}
-  	    <tr>
-  	    <th scope="col" style = "border-top:3px solid #12090e">{{key | capfirst}}</th>
-	       {% for item in value %}
-	       <td scope="col" style = "text-align:center;border-top:3px solid #12090e">{{item | capfirst}}</td>
-	       {% endfor %}
-        </tr> 
-    	{% endfor %}
-  </tbody>
- </table>
+    </div>
+    <div class="col">
 
-		  <div class="row d-flex justify-content-center">
-				<a  href="{% url 'home' %}" class="list-group-item list-group-item-action" style="background-color: rgba(0,0,0,.075);width:170px;padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1rem;color: #808a8c;">Return To Home</h5></a>
-		  </div>
+    {% for key,value in TagsWikiDict_simi.items %}
+      <p style = "    
+      color: #fdc317;
+    font-size: 3rem;
+    font-family: fantasy;"> {{key|capfirst}}</p>
+      <p style = "color:#b78b0a">{{value|capfirst}}</p>
+    {% endfor %}
+
 
     </div>
-    <div class="col-sm">
+    </div>
+
+
+
+    <br>
+
+    <div class="list-group">
+
+
+            <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
+              
+                <tr style = "background-color:#0c5460; ">
+                <th style = "width: 124px;text-align:center;">Quality</th>
+                <th style = "text-align:center">Example</th>
+                </tr>
+              
+              <tbody>
+                    {% for id, valuepack in Features.items %}
+
+                    <tr>
+                    {% with "https://stackoverflow.com/questions/"|add:id as address %}
+                    
+                    
+                    <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a href = {{address}} style = "color:#ffffff">{{ valuepack.0 | capfirst}}</a></th>
+                    {% endwith %}
+                     <td scope="col" style = "text-align:left;border-top:3px solid #12090e">{{ valuepack.1 | capfirst}}</td>
+                    </tr> 
+                  {% endfor %}
+              </tbody>
+             </table>
+
+
+        <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="background-color: rgba(0,0,0,0);width: 160px;padding-top: 8px;padding-bottom: 40px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;color: #ffc107;">Back to Home</h5></a>
+
+
+
+    
+    </div>
+    
+
+
+    </div>
+    <div class="col">
     </div>
   </div>
 </div>
+
 
 
 
