@@ -1,4 +1,3 @@
- | 
 javascript	java	php	 | dom	html	php	coffeescript	css	,	scala	groovy	python	php	c++	,	ruby	perl	java	javascript	,	
 python	jquery	html	 | c++	perl	java	ruby	haskell	,	angularjs	prototypejs	jquery-plugins	mootools	jquery-mobile	simplemodal	knockout.js	shadowbox	jquery-chosen	jeditable	reactjs	lightbox	twitter-bootstrap	blockui	extjs	jqmodal	jqgrid	sweetalert	jquery-validate	,	javascript	dom	,	
 ios	c++	mysql	 | ipad	,	c++-cli	python	haskell	delphi	perl	java	lua	,	postgresql	oracle	sql-server	firebird	informix	mongodb	ms-access	hsqldb	teradata	oracle10g	sql-server-ce	ingres	database-table	sql-server-express	,	

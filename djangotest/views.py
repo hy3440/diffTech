@@ -51,6 +51,7 @@ def tagcompare(request,tag,simi):
     tpair = sorted([tag,simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
+    SITE = StackAPI('stackoverflow')
 
     Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
     if Relation:
@@ -76,9 +77,39 @@ def tagcompare(request,tag,simi):
         #make a dictionary containing relation of quality, id, example
         features = {}
         for eachone in Relation:
-            features[eachone['example_id']] = [eachone['quality'],eachone['example']]
+            IDS = [eachone['example_id']]
+            #info = SITE.fetch('posts/{ids}/revisions', ids = IDS)
+            """
+            title = ''
+            for item in info['items']:
+                if 'last_title' in item.keys():
+                    title = item['last_title']
+                    break
+                elif 'title' in item.keys():
+                    title = item['title']
+                    break
+            title = title.replace('&quot;','"')
+
+            """
+            if ' overall' in eachone['quality']:
+                quality = eachone['quality'].replace(' overall','')
+                qualityCate = 'Others'
+            elif ' in ' in eachone['quality']:
+                quality = eachone['quality'].split(' in ')[0]
+                qualityCate = eachone['quality'].split(' in ')[1]
+            if qualityCate not in features.keys():
+                features[qualityCate] = {}
+                features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
+            else:
+                if quality in features[qualityCate].keys():
+                    features[qualityCate][quality].append([eachone['example'],eachone['example_id']])
+                else:
+                    features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
+
+
+            #features[eachone['example_id']] = [qualityCate,quality,eachone['example']]
         
-        SITE = StackAPI('stackoverflow')
+        
         
         tagsFetch = [Tag,SimiTag]
 
@@ -136,7 +167,7 @@ def selecttag(request):
         """
 
         #check the position of the searched tag: 0 or 1 or 2, and locate its similartags
-        oritag = Tagpair[0].tag.split('\t')
+        oritag = Tagpair[0].tag.strip().split('\t')
         pos = 0
         for index, value in enumerate(oritag):
             if value == Tag:
@@ -144,7 +175,7 @@ def selecttag(request):
                 break
         simitags = Tagpair[0].simitag.split(',')
         simitag = simitags[pos]
-        tagsFetch = simitag.split('\t')
+        tagsFetch = simitag.strip().split('\t')
 
         #assign simitags into tagsFetch
 

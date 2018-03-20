@@ -38,28 +38,44 @@
 
     <div class="list-group">
 
-
+            {% for key, value in Features.items %}
+            <p style = "  
+                color: #4aa76c;
+                font-size: 2rem;
+                font-family: fantasy;
+                background-color: rgba(0,0,0,.075);
+                padding-left: 0px;
+                padding-right: 20px;
+                width: 240px;
+                ">{{key|capfirst}}</p>
             <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
-              
+
                 <tr style = "background-color:#0c5460; ">
                 <th style = "width: 124px;text-align:center;">Quality</th>
                 <th style = "text-align:center">Example</th>
                 </tr>
               
               <tbody>
-                    {% for id, valuepack in Features.items %}
+                    {% for quality, examples in value.items %}
 
                     <tr>
-                    {% with "https://stackoverflow.com/questions/"|add:id as address %}
+                    <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{ quality | capfirst}}</th>
                     
-                    
-                    <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a href = {{address}} style = "color:#ffffff">{{ valuepack.0 | capfirst}}</a></th>
+                    <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
+                    {% for row in examples %}
+                    {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
+                    <!--<p>{{row.2|capfirst}}</p>-->
+                    <a href = {{address}} style = "color:#ffffff">
+                    <p>{{ row.0 | capfirst}}</p></a>
                     {% endwith %}
-                     <td scope="col" style = "text-align:left;border-top:3px solid #12090e">{{ valuepack.1 | capfirst}}</td>
+                    {% endfor %}
+                    </td>
+                     
                     </tr> 
                   {% endfor %}
               </tbody>
              </table>
+             {% endfor %}
 
 
         <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="background-color: rgba(0,0,0,0);width: 160px;padding-top: 8px;padding-bottom: 40px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;color: #ffc107;">Back to Home</h5></a>
