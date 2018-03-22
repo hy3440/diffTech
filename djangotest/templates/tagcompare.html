@@ -39,6 +39,7 @@
     <div class="list-group">
 
             {% for key, value in Features.items %}
+            <!--p>{{value}}</p-->
             <p style = "  
                 color: #4aa76c;
                 font-size: 2rem;
@@ -63,10 +64,20 @@
                     
                     <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
                     {% for row in examples %}
+
+
                     {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
-                    <!--<p>{{row.2|capfirst}}</p>-->
+
                     <a href = {{address}} style = "color:#ffffff">
-                    <p>{{ row.0 | capfirst}}</p></a>
+                    <p>"{{ row.0 | capfirst}}"</p>
+                    </a>
+                    <p style = "
+                        color: #4aa78e;
+                        font-family: monospace;
+                        /* font-weight: 300; */
+                        font-style: italic;
+                        text-align: left"
+                    >from question "{{row.2|capfirst}}"</p>
                     {% endwith %}
                     {% endfor %}
                     </td>
