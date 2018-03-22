@@ -5,16 +5,14 @@
 
 
 
-<div class="container" style = "max-width: 960px;margin: auto;">
+<div class="container" style = "max-width: 1200px;margin-left: 8%; margin-right: 10%">
   <div class="row align-items-center" style = "height: 600px;">
-    <div class="col">
-    </div>
-    <div class="col-12 align-items-center">
+    <div class="col-5 align-items-center">
       
 		<form action="/selecttag/" method="post">
 		{% csrf_token %}
 		  <div class="form-group">
-		  	<p class = "text-center" style = "font-size: 3rem;font-weight: 300;font-family: fantasy;color:  #ffffff;">Please input your tag here: </p>
+		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;">Search similar technology: </p>
 
 		  	<div class="container">
 		  	  <div class="row align-items-center">
@@ -24,7 +22,7 @@
 
 		  	
 
-		    	<input class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a tag name"> 
+		    	<input class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a technology"> 
 
   				</div>
   				<div class="col">
@@ -43,8 +41,45 @@
 		</form> 
 
     </div>
-    <div class="col">
+    <div class="col-1">
     </div>
+    <div class="col-5 align-items-center">
+      
+		<form action="/tagcomparepost/" method="post">
+		{% csrf_token %}
+		  <div class="form-group">
+		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;">Compare similar technology: </p>
+
+		  	<div class="container">
+		  	  <div class="row align-items-center">
+			    <div class="col">
+			    </div>
+			    <div class="col-6 align-items-center">
+
+		  	
+
+		    	<input class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a technology">
+		    	<br>
+		    	<input class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "simi" type="text" placeholder="Enter a technology"> 
+
+  				</div>
+  				<div class="col">
+		    	</div>
+		  	</div>
+		  	</div>
+
+		  	<br>
+
+		  <div class="container">
+		  <div class="row d-flex justify-content-center">
+				<button  type="submit" class="list-group-item list-group-item-action" style="background-color: #e8ae00;width: 160px;padding-top: 8px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: monospace;">Submit</h5></button>
+		  </div>
+		  </div>
+		  </div>
+		</form> 
+
+    </div>
+
   </div>
 </div>
 
