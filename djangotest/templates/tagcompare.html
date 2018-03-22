@@ -4,7 +4,27 @@
 
 <div class="container">
   <div class="row align-items-center" style = "margin-top: 40px;">
-    <div class="col">
+    <div class="col-2">
+
+<div class="fixed-top" style = "
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 150px;
+    text-align:  center;
+">
+<div class="list-group">
+  {% for key,value in Features.items %}
+  <a href="#{{key}}" class="tagcomparemenu list-group-item-action" style = "
+color:#449b64;
+font-family: fantasy;
+border: 1px solid #212529;
+padding:9px;
+  " >{{key|capfirst}}</a>
+  {% endfor %}
+</div>
+</div>
+
+
     </div>
     <div class="col-8">    
 
@@ -34,12 +54,16 @@
 
 
 
+
+
+
     <br>
 
     <div class="list-group">
 
             {% for key, value in Features.items %}
             <!--p>{{value}}</p-->
+            <a id = "{{key}}">
             <p style = "  
                 color: #4aa76c;
                 font-size: 2rem;
@@ -48,7 +72,7 @@
                 padding-left: 0px;
                 padding-right: 20px;
                 width: 240px;
-                ">{{key|capfirst}}</p>
+                ">{{key|capfirst}}</p></a>
             <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
 
                 <tr style = "background-color:#0c5460; ">
@@ -99,7 +123,7 @@
 
 
     </div>
-    <div class="col">
+    <div class="col-1">
     </div>
   </div>
 </div>
