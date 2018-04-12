@@ -74,10 +74,47 @@ def tagcompare(request,tag,simi):
             i+=1
         #return render(request, 'home.html',{'tags':Tags})
         """
+        #add in below for changes to squeeze rows in database
+        #now relation only has one row, with format of ['better,faster','1234,2344','that is better, i think it is faster']
+        RelationGroups = []
+        qualityNew = []
+        exampleIDNew = [] 
+        exampleNew = [] 
+        for eachonegroup in Relation:
+            qualityNew += eachonegroup['quality'].strip().split(',')
+            exampleIDNew += eachonegroup['example_id'].strip().split(',')
+            exampleNew += eachonegroup['example'].strip().split(',')
+
+        for theid, value in enumerate(qualityNew):
+            if value != '':
+                """
+                exampleidSS = exampleIDNew[theid].strip().split(',')
+                exampleSS = exampleNew[theid].strip().split(',')
+                for theidSS, valueSS in enumerate(exampleidSS):
+                    if theidSS is not None:
+                        newdict = {}
+                        newdict['quality'] = value
+                        newdict['example_id'] = valueSS
+                        newdict['example'] = exampleSS[theidSS]
+                        RelationGroups.append(newdict)
+                """
+                newdict = {}
+                newdict['quality'] = value
+                newdict['example_id'] = exampleIDNew[theid]
+                newdict['example'] = exampleNew[theid]
+                RelationGroups.append(newdict)
+
+
+
+
+        #add in above for changes to squeeze rows in database
+
+
         #make a dictionary containing relation of quality, id, example
         features = {}
         IDS_noset = [] #1162378,1795117,1338597,259517,1338597
-        for eachone in Relation:
+        
+        for eachone in RelationGroups: #relation acts like a dictionary #change Relation to RelationGroups
             postid = eachone['example_id']
             IDS_noset.append(int(postid))
 
@@ -337,9 +374,39 @@ def tagcomparepost(request):
             #return render(request, 'home.html',{'tags':Tags})
             """
             #make a dictionary containing relation of quality, id, example
+
+            RelationGroups = []
+            qualityNew = []
+            exampleIDNew = []
+            exampleNew = []
+            for eachonegroup in Relation:
+                qualityNew += eachonegroup['quality'].strip().split(',')
+                exampleIDNew += eachonegroup['example_id'].strip().split(',')
+                exampleNew += eachonegroup['example'].strip().split(',')
+
+            for theid, value in enumerate(qualityNew):
+                if value != '':
+                    """
+                    exampleidSS = exampleIDNew[theid].strip().split(',')
+                    exampleSS = exampleNew[theid].strip().split(',')
+                    for theidSS, valueSS in enumerate(exampleidSS):
+                        if theidSS is not None:
+                            newdict = {}
+                            newdict['quality'] = value
+                            newdict['example_id'] = valueSS
+                            newdict['example'] = exampleSS[theidSS]
+                            RelationGroups.append(newdict)
+                    """
+                    newdict = {}
+                    newdict['quality'] = value
+                    newdict['example_id'] = exampleIDNew[theid]
+                    newdict['example'] = exampleNew[theid]
+                    RelationGroups.append(newdict)
+
+
             features = {}
             IDS_noset = [] #1162378,1795117,1338597,259517,1338597
-            for eachone in Relation:
+            for eachone in RelationGroups:
                 postid = eachone['example_id']
                 IDS_noset.append(int(postid))
 

@@ -9,9 +9,9 @@ class tagpaircompare(models.Model):
 class relation(models.Model):
 	tag = models.CharField(max_length = 35)
 	simitag = models.CharField(max_length = 35)
-	quality = models.CharField(max_length = 70)
-	example_id = models.CharField(max_length = 9)
-	example = models.CharField(max_length = 400)
+	quality = models.CharField(max_length = 1000) #limit 1000 70
+	example_id = models.CharField(max_length = 600) #limit 600 9
+	example = models.CharField(max_length = 60000) #limit 65535?? 400
 
 
 class tagpair(models.Model):
