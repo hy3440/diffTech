@@ -13,7 +13,11 @@
 		{% csrf_token %}
 		  <div class="form-group">
 		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;">Search similar technology: </p>
-
+			  	{% for key, value in Error.items %}
+		  		{% if not value.1 %}
+			    <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
+			    {% endif %}
+			    {% endfor %}
 		  	<div class="container">
 		  	  <div class="row align-items-center">
 			    <div class="col">
@@ -49,14 +53,20 @@
 		{% csrf_token %}
 		  <div class="form-group">
 		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;">Compare similar technology: </p>
+			  	{% for key, value in Error.items %}
+		  		{% if value.1 %}
+			    <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
+			    {% endif %}
+			    {% endfor %}
 
 		  	<div class="container">
 		  	  <div class="row align-items-center">
 			    <div class="col">
+
 			    </div>
+
 			    <div class="col-6 align-items-center">
 
-		  	
 
 		    	<input class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a technology">
 		    	<br>

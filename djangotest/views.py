@@ -42,11 +42,6 @@ def tagpair(request,Tag):
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 def tagcompare(request,tag,simi):
-    #Tags = tags.objects.all()
-    """
-    Tag = tag
-    SimiTag = simi
-    """
 
     tpair = sorted([tag,simi])
     Tag = tpair[0]
@@ -55,25 +50,7 @@ def tagcompare(request,tag,simi):
 
     Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
     if Relation:
-        """
-        compares = []
-        for eachone in Relation:
-            compares.append(eachone)
-        Compare = compares[0]['compare']
-        items = Compare.strip().split()
-        features = {}
-        
-        i = 0 #loop current index
-        k = '' #last feature 
-        for item in items:
-            if i % 3 == 0:
-                features[item] = [] #add in new comparable feature
-                k = item
-            else:
-                features[k].append(item)
-            i+=1
-        #return render(request, 'home.html',{'tags':Tags})
-        """
+
         #add in below for changes to squeeze rows in database
         #now relation only has one row, with format of ['better,faster','1234,2344','that is better, i think it is faster']
         RelationGroups = []
@@ -87,28 +64,14 @@ def tagcompare(request,tag,simi):
 
         for theid, value in enumerate(qualityNew):
             if value != '':
-                """
-                exampleidSS = exampleIDNew[theid].strip().split(',')
-                exampleSS = exampleNew[theid].strip().split(',')
-                for theidSS, valueSS in enumerate(exampleidSS):
-                    if theidSS is not None:
-                        newdict = {}
-                        newdict['quality'] = value
-                        newdict['example_id'] = valueSS
-                        newdict['example'] = exampleSS[theidSS]
-                        RelationGroups.append(newdict)
-                """
+  
                 newdict = {}
                 newdict['quality'] = value
                 newdict['example_id'] = exampleIDNew[theid]
                 newdict['example'] = exampleNew[theid]
                 RelationGroups.append(newdict)
 
-
-
-
         #add in above for changes to squeeze rows in database
-
 
         #make a dictionary containing relation of quality, id, example
         features = {}
@@ -121,18 +84,7 @@ def tagcompare(request,tag,simi):
                 IDS_noset.append(int(postid))
 
                 #info = SITE.fetch('posts/{ids}/revisions', ids = IDS)
-                """
-                title = ''
-                for item in info['items']:
-                    if 'last_title' in item.keys():
-                        title = item['last_title']
-                        break
-                    elif 'title' in item.keys():
-                        title = item['title']
-                        break
-                title = title.replace('&quot;','"')
 
-                """
                 if ' overall' in eachone['quality']:
                     quality = eachone['quality'].replace(' overall','')
                     qualityCate = 'Others'
@@ -148,76 +100,15 @@ def tagcompare(request,tag,simi):
                     else:
                         features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
 
-        # #IDS_sorted = sorted(IDS, reverse = True)
-        # #take care of repetitive answers id
-        # ids_count = {}
-        # for x in IDS_noset:
-        #     ids_count[x] = IDS_noset.count(x)
 
-        # IDSset = set(IDS_noset)
-        # info1 = SITE.fetch('/posts/{ids}/revisions', ids = IDSset ,order = 'desc', sort = 'creation') #the returning list of dictionary will be in descending order of the id
-        
         id_title = {} #id of post and title of that post, put into a dictionary
-        # questionid = []
-        # for item in info1['items']:
-        #     if 'title' in item.keys():
-        #         id_title[item['post_id']] = item['title']
-        #         #ids_count[item['post_id']] -= 1
-        #         #if ids_count == 0:
-        #         questionid.append(item['post_id'])
-        #         IDSset.remove(item['post_id'])
-
-        # IDS_sorted = sorted(IDSset, reverse = True)
-        # info2 = SITE.fetch('/answers/{ids}/questions', ids = IDS_sorted , order = 'desc', sort = 'creation')    
-
-
-
-        # count_title = 0 
-        # len_ids_sorted = len(IDS_sorted)               
-        # for item in info2['items']: #appears in ascending order
-        #     if 'title' in item.keys():
-        #         count_title+=1
-        #         id_title[IDS_sorted.pop(0)] = item['title']
-        # if tested:
-        #     print('im')
-
-        #if IDS_sorted != []:
-        #    raise Http404("Number of titles not equal to number if IDS")
-
-
-        # featureswithtitle = features.copy()
-        # i = 0
-        # for post_id, title in id_title.items():
-        #     #i+=1
-        #     found = 0 #find location for title to be attached
-
-        #     #locate its position in features dictionary
-        #     for qualityCate, qualityDict in features.items():
-        #         #if qualityCate not in featureswithtitle.keys():
-        #             #featureswithtitle[qualityCate] = qualityDict
-        #         for quality, details in qualityDict.items():
-        #             for item in details:
-        #                 if str(post_id) == item[1]:
-        #                     item.append(title)
-        #                     #featureswithtitle[qualityCate][quality][index]=['title','title']
-
-        #                     found = 1
-        #                     break
-        #             if found:
-        #                 break
-        #         if found:
-        #             break
-        #     if not found:
-        #         #if not tested: 
-        #         raise Http404("Dictionary pair not found for post_id "+ str(post_id))
-
+ 
         # if not tested:
         #     raise Http404('lalal')
         IDS = sorted(IDS_noset)
         info = SITE.fetch('/posts/{ids}',ids = IDS, filter = '!9Z(-wsMqT')
         for item in info['items']:
             id_title[item['post_id']] = item['title']
-
 
 
         for qualityCate, qualityDict in features.items():
@@ -230,22 +121,7 @@ def tagcompare(request,tag,simi):
                             found = 1
                             break
                     if not found:
-                        item.append('* (no title is found for this review)')
-                        #if tested: 
-                        #raise Http404("Dictionary pair not found for "+ str(item[0]+' '+str(item[1])))
-
-
-
-
-
-
-
-
-
-
-            #features[eachone['example_id']] = [qualityCate,quality,eachone['example']]
-        
-        
+                        item.append('* (no title is found for this review)')        
         
         tagsFetch = [Tag,SimiTag]
 
@@ -293,7 +169,9 @@ def selecttag(request):
 
         #make sure tagpair exists
         if not Tagpair:
-            raise Http404("Tag pair does not exist")
+            error = {}
+            error['msg'] = ['Similar technology is not found. Try another one.',0]
+            return render(request, 'home.html',{'Error':error})
 
         """
         tagsFetch = []
@@ -357,25 +235,7 @@ def tagcomparepost(request):
 
         Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
         if Relation:
-            """
-            compares = []
-            for eachone in Relation:
-                compares.append(eachone)
-            Compare = compares[0]['compare']
-            items = Compare.strip().split()
-            features = {}
-            
-            i = 0 #loop current index
-            k = '' #last feature 
-            for item in items:
-                if i % 3 == 0:
-                    features[item] = [] #add in new comparable feature
-                    k = item
-                else:
-                    features[k].append(item)
-                i+=1
-            #return render(request, 'home.html',{'tags':Tags})
-            """
+
             #make a dictionary containing relation of quality, id, example
 
             RelationGroups = []
@@ -389,17 +249,7 @@ def tagcomparepost(request):
 
             for theid, value in enumerate(qualityNew):
                 if value != '':
-                    """
-                    exampleidSS = exampleIDNew[theid].strip().split(',')
-                    exampleSS = exampleNew[theid].strip().split(',')
-                    for theidSS, valueSS in enumerate(exampleidSS):
-                        if theidSS is not None:
-                            newdict = {}
-                            newdict['quality'] = value
-                            newdict['example_id'] = valueSS
-                            newdict['example'] = exampleSS[theidSS]
-                            RelationGroups.append(newdict)
-                    """
+
                     newdict = {}
                     newdict['quality'] = value
                     newdict['example_id'] = exampleIDNew[theid]
@@ -417,18 +267,6 @@ def tagcomparepost(request):
                     IDS_noset.append(int(postid))
 
                     #info = SITE.fetch('posts/{ids}/revisions', ids = IDS)
-                    """
-                    title = ''
-                    for item in info['items']:
-                        if 'last_title' in item.keys():
-                            title = item['last_title']
-                            break
-                        elif 'title' in item.keys():
-                            title = item['title']
-                            break
-                    title = title.replace('&quot;','"')
-
-                    """
                     if ' overall' in eachone['quality']:
                         quality = eachone['quality'].replace(' overall','')
                         qualityCate = 'Others'
@@ -446,77 +284,12 @@ def tagcomparepost(request):
                 else:
                     break
 
-            # #IDS_sorted = sorted(IDS, reverse = True)
-            # #take care of repetitive answers id
-            # ids_count = {}
-            # for x in IDS_noset:
-            #     ids_count[x] = IDS_noset.count(x)
-
-            # IDSset = set(IDS_noset)
-            # info1 = SITE.fetch('/posts/{ids}/revisions', ids = IDSset ,order = 'desc', sort = 'creation') #the returning list of dictionary will be in descending order of the id
-            
             id_title = {} #id of post and title of that post, put into a dictionary
-            # questionid = []
-            # for item in info1['items']:
-            #     if 'title' in item.keys():
-            #         id_title[item['post_id']] = item['title']
-            #         #ids_count[item['post_id']] -= 1
-            #         #if ids_count == 0:
-            #         questionid.append(item['post_id'])
-            #         IDSset.remove(item['post_id'])
-
-            # IDS_sorted = sorted(IDSset, reverse = True)
-            # info2 = SITE.fetch('/answers/{ids}/questions', ids = IDS_sorted , order = 'desc', sort = 'creation')    
-
-
-
-            # count_title = 0 
-            # len_ids_sorted = len(IDS_sorted)               
-            # for item in info2['items']: #appears in ascending order
-            #     if 'title' in item.keys():
-            #         count_title+=1
-            #         id_title[IDS_sorted.pop(0)] = item['title']
-            # if tested:
-            #     print('im')
-
-            #if IDS_sorted != []:
-            #    raise Http404("Number of titles not equal to number if IDS")
-
-
-            # featureswithtitle = features.copy()
-            # i = 0
-            # for post_id, title in id_title.items():
-            #     #i+=1
-            #     found = 0 #find location for title to be attached
-
-            #     #locate its position in features dictionary
-            #     for qualityCate, qualityDict in features.items():
-            #         #if qualityCate not in featureswithtitle.keys():
-            #             #featureswithtitle[qualityCate] = qualityDict
-            #         for quality, details in qualityDict.items():
-            #             for item in details:
-            #                 if str(post_id) == item[1]:
-            #                     item.append(title)
-            #                     #featureswithtitle[qualityCate][quality][index]=['title','title']
-
-            #                     found = 1
-            #                     break
-            #             if found:
-            #                 break
-            #         if found:
-            #             break
-            #     if not found:
-            #         #if not tested: 
-            #         raise Http404("Dictionary pair not found for post_id "+ str(post_id))
-
-            # if not tested:
-            #     raise Http404('lalal')
+ 
             IDS = sorted(IDS_noset)
             info = SITE.fetch('/posts/{ids}',ids = IDS, filter = '!9Z(-wsMqT')
             for item in info['items']:
                 id_title[item['post_id']] = item['title']
-
-
 
             for qualityCate, qualityDict in features.items():
                 for quality, details in qualityDict.items():
@@ -529,21 +302,6 @@ def tagcomparepost(request):
                                 break
                         if not found:
                             item.append('* (no title is found for this review)')
-                            #if tested: 
-                            #raise Http404("Dictionary pair not found for "+ str(item[0]+' '+str(item[1])))
-
-
-
-
-
-
-
-
-
-
-                #features[eachone['example_id']] = [qualityCate,quality,eachone['example']]
-            
-            
             
             tagsFetch = [Tag,SimiTag]
 
@@ -564,9 +322,9 @@ def tagcomparepost(request):
             tagsWikiDict_tag[Tag] = tagsWikiDict[Tag]
             tagsWikiDict_simi[SimiTag] = tagsWikiDict[SimiTag]
 
-
-
         else:
-            raise Http404("Tag pair does not exist")
+            error = {}
+            error['msg'] = ['Technology pair is not found. Try another one.',1]
+            return render(request, 'home.html',{'Error':error})
 
         return render(request, 'tagcompare.html',{'Features':features,'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
