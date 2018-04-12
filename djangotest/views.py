@@ -113,38 +113,40 @@ def tagcompare(request,tag,simi):
         #make a dictionary containing relation of quality, id, example
         features = {}
         IDS_noset = [] #1162378,1795117,1338597,259517,1338597
-        
+        totalcount = 0
         for eachone in RelationGroups: #relation acts like a dictionary #change Relation to RelationGroups
-            postid = eachone['example_id']
-            IDS_noset.append(int(postid))
+            totalcount+= 1
+            if totalcount <= 100:
+                postid = eachone['example_id']
+                IDS_noset.append(int(postid))
 
-            #info = SITE.fetch('posts/{ids}/revisions', ids = IDS)
-            """
-            title = ''
-            for item in info['items']:
-                if 'last_title' in item.keys():
-                    title = item['last_title']
-                    break
-                elif 'title' in item.keys():
-                    title = item['title']
-                    break
-            title = title.replace('&quot;','"')
+                #info = SITE.fetch('posts/{ids}/revisions', ids = IDS)
+                """
+                title = ''
+                for item in info['items']:
+                    if 'last_title' in item.keys():
+                        title = item['last_title']
+                        break
+                    elif 'title' in item.keys():
+                        title = item['title']
+                        break
+                title = title.replace('&quot;','"')
 
-            """
-            if ' overall' in eachone['quality']:
-                quality = eachone['quality'].replace(' overall','')
-                qualityCate = 'Others'
-            elif ' in ' in eachone['quality']:
-                quality = eachone['quality'].split(' in ')[0]
-                qualityCate = eachone['quality'].split(' in ')[1]
-            if qualityCate not in features.keys():
-                features[qualityCate] = {}
-                features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
-            else:
-                if quality in features[qualityCate].keys():
-                    features[qualityCate][quality].append([eachone['example'],eachone['example_id']])
-                else:
+                """
+                if ' overall' in eachone['quality']:
+                    quality = eachone['quality'].replace(' overall','')
+                    qualityCate = 'Others'
+                elif ' in ' in eachone['quality']:
+                    quality = eachone['quality'].split(' in ')[0]
+                    qualityCate = eachone['quality'].split(' in ')[1]
+                if qualityCate not in features.keys():
+                    features[qualityCate] = {}
                     features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
+                else:
+                    if quality in features[qualityCate].keys():
+                        features[qualityCate][quality].append([eachone['example'],eachone['example_id']])
+                    else:
+                        features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
 
         # #IDS_sorted = sorted(IDS, reverse = True)
         # #take care of repetitive answers id
@@ -406,37 +408,42 @@ def tagcomparepost(request):
 
             features = {}
             IDS_noset = [] #1162378,1795117,1338597,259517,1338597
+            totalcount = 0 #monitor the counts of ID to be passed in to stack API, shoule not exceed 100
             for eachone in RelationGroups:
-                postid = eachone['example_id']
-                IDS_noset.append(int(postid))
+                totalcount += 1
+                if totalcount <= 100:
+                    postid = eachone['example_id']
+                    IDS_noset.append(int(postid))
 
-                #info = SITE.fetch('posts/{ids}/revisions', ids = IDS)
-                """
-                title = ''
-                for item in info['items']:
-                    if 'last_title' in item.keys():
-                        title = item['last_title']
-                        break
-                    elif 'title' in item.keys():
-                        title = item['title']
-                        break
-                title = title.replace('&quot;','"')
+                    #info = SITE.fetch('posts/{ids}/revisions', ids = IDS)
+                    """
+                    title = ''
+                    for item in info['items']:
+                        if 'last_title' in item.keys():
+                            title = item['last_title']
+                            break
+                        elif 'title' in item.keys():
+                            title = item['title']
+                            break
+                    title = title.replace('&quot;','"')
 
-                """
-                if ' overall' in eachone['quality']:
-                    quality = eachone['quality'].replace(' overall','')
-                    qualityCate = 'Others'
-                elif ' in ' in eachone['quality']:
-                    quality = eachone['quality'].split(' in ')[0]
-                    qualityCate = eachone['quality'].split(' in ')[1]
-                if qualityCate not in features.keys():
-                    features[qualityCate] = {}
-                    features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
-                else:
-                    if quality in features[qualityCate].keys():
-                        features[qualityCate][quality].append([eachone['example'],eachone['example_id']])
-                    else:
+                    """
+                    if ' overall' in eachone['quality']:
+                        quality = eachone['quality'].replace(' overall','')
+                        qualityCate = 'Others'
+                    elif ' in ' in eachone['quality']:
+                        quality = eachone['quality'].split(' in ')[0]
+                        qualityCate = eachone['quality'].split(' in ')[1]
+                    if qualityCate not in features.keys():
+                        features[qualityCate] = {}
                         features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
+                    else:
+                        if quality in features[qualityCate].keys():
+                            features[qualityCate][quality].append([eachone['example'],eachone['example_id']])
+                        else:
+                            features[qualityCate][quality] = [[eachone['example'],eachone['example_id']]]
+                else:
+                    break
 
             # #IDS_sorted = sorted(IDS, reverse = True)
             # #take care of repetitive answers id
@@ -504,11 +511,7 @@ def tagcomparepost(request):
             # if not tested:
             #     raise Http404('lalal')
             IDS = sorted(IDS_noset)
-            if len(IDS) > 100:
-                IDS_limit = IDS[0:100]
-            else:
-                IDS_limit = IDS
-            info = SITE.fetch('/posts/{ids}',ids = IDS_limit, filter = '!9Z(-wsMqT')
+            info = SITE.fetch('/posts/{ids}',ids = IDS, filter = '!9Z(-wsMqT')
             for item in info['items']:
                 id_title[item['post_id']] = item['title']
 
