@@ -89,6 +89,7 @@ class Command(BaseCommand):
 				if (not line.startswith('(')) and line != '\n':
 					print(str(ID))
 					#tag line
+					example_list = []
 
 					comparetag = line.strip().split('\t')
 					
@@ -124,31 +125,36 @@ class Command(BaseCommand):
 									finalitem = item.strip()
 									print('finalitem : '+finalitem)
 									final.append(finalitem)
-
-
-								#1 and 3 form comparable quality
-								if final[3] == '':
-									quality = final[1] + ' overall'
-								else:
-									quality = final[1] + ' in '+ final[3]
-								#print(quality)
-								Relation.quality += quality
-								Relation.quality += ','
-
-								example_id = final[4]
+								
 								example = final[5]
+								if example not in example_list:
+									example_list.append(example)
 
-								#print(example_id+'\t'+example)
-								Relation.example_id += example_id
-								Relation.example_id += ','
-								#if len(example) < 500:
-								Relation.example += example
-								Relation.example += ','
+									Relation.example += example
+									Relation.example += ','
+
+									#1 and 3 form comparable quality
+									if final[3] == '':
+										quality = final[1] + ' overall'
+									else:
+										quality = final[1] + ' in '+ final[3]
+									#print(quality)
+									Relation.quality += quality
+									Relation.quality += ','
+
+									example_id = final[4]
+									
+
+									#print(example_id+'\t'+example)
+									Relation.example_id += example_id
+									Relation.example_id += ','
+									#if len(example) < 500:
+
 							else: #counter = 10
 								#counter = 0 # reset
 								break
 
-						if len(Relation.example_id) < 600 and len(Relation.quality) < 1000 and len(Relation.example) < 60000:
+						if len(Relation.example_id) < 600 and len(Relation.example_id)>2 and len(Relation.quality) < 1000 and len(Relation.example) < 60000:
 							Relation.save()
 							print('example save!')
 						else:

@@ -504,7 +504,11 @@ def tagcomparepost(request):
             # if not tested:
             #     raise Http404('lalal')
             IDS = sorted(IDS_noset)
-            info = SITE.fetch('/posts/{ids}',ids = IDS, filter = '!9Z(-wsMqT')
+            if len(IDS) > 100:
+                IDS_limit = IDS[0:100]
+            else:
+                IDS_limit = IDS
+            info = SITE.fetch('/posts/{ids}',ids = IDS_limit, filter = '!9Z(-wsMqT')
             for item in info['items']:
                 id_title[item['post_id']] = item['title']
 
@@ -520,8 +524,9 @@ def tagcomparepost(request):
                                 found = 1
                                 break
                         if not found:
+                            item.append('did not found title for this one!')
                             #if tested: 
-                            raise Http404("Dictionary pair not found for "+ str(item[0]+' '+str(item[1])))
+                            #raise Http404("Dictionary pair not found for "+ str(item[0]+' '+str(item[1])))
 
 
 

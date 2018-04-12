@@ -8,3 +8,6 @@ for line in lines:
 f.close()
 print(str(count))
 print(str(int(3.6)))
+
+ana = sorted([1,4,5,2,7])
+print(ana[0:2])
