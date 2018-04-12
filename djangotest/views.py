@@ -230,8 +230,9 @@ def tagcompare(request,tag,simi):
                             found = 1
                             break
                     if not found:
+                        item.append('* (no title is found for this review)')
                         #if tested: 
-                        raise Http404("Dictionary pair not found for "+ str(item[0]+' '+str(item[1])))
+                        #raise Http404("Dictionary pair not found for "+ str(item[0]+' '+str(item[1])))
 
 
 
@@ -276,7 +277,7 @@ def selecttag(request):
 
     if request.method == "POST":
 
-        Tag = request.POST.get('tag').lower()
+        Tag = request.POST.get('tag').lower().strip()
 
         SITE = StackAPI('stackoverflow')
         ori_tag = [Tag]
@@ -346,8 +347,8 @@ def tagcomparepost(request):
 
     if request.method == "POST":
 
-        ttag = request.POST.get('tag').lower()
-        tsimi = request.POST.get('simi').lower()
+        ttag = request.POST.get('tag').lower().strip()
+        tsimi = request.POST.get('simi').lower().strip()
 
         tpair = sorted([ttag,tsimi])
         Tag = tpair[0]
@@ -527,7 +528,7 @@ def tagcomparepost(request):
                                 found = 1
                                 break
                         if not found:
-                            item.append('did not found title for this one!')
+                            item.append('* (no title is found for this review)')
                             #if tested: 
                             #raise Http404("Dictionary pair not found for "+ str(item[0]+' '+str(item[1])))
 
