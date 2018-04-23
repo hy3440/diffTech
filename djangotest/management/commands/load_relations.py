@@ -70,7 +70,7 @@ class Command(BaseCommand):
 
 class Command(BaseCommand):
 	# Show this when the user types help
-	help = "Loads data from relations.txt into our relation model"
+	help = "Loads data from relations---.txt into our relation model"
 
 	def handle(self, *args, **options):
 		if relation.objects.exists():
@@ -80,7 +80,7 @@ class Command(BaseCommand):
 
 		else: 
 			print("Loading relation data ...")
-			f = open('relations1.txt')
+			f = open('relations_add22042018.txt')
 			lines = f.readlines()
 			f.close()
 

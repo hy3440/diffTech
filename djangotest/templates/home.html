@@ -12,7 +12,8 @@
 		<form action="/selecttag/" method="post">
 		{% csrf_token %}
 		  <div class="form-group">
-		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;">Search similar technology: </p>
+		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;margin-bottom: 2px;">Search similar technology: </p>
+		  	<p class = "text-center" style = "color:#ffffff">Enter a technology like 'mysql','maven' to view similar technology.</p>
 			  	{% for key, value in Error.items %}
 		  		{% if not value.1 %}
 			    <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
@@ -39,6 +40,7 @@
 		  <div class="container">
 		  <div class="row d-flex justify-content-center">
 				<button  type="submit" class="list-group-item list-group-item-action" style="background-color: #e8ae00;width: 160px;padding-top: 8px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: monospace;">Submit</h5></button>
+
 		  </div>
 		  </div>
 		  </div>
@@ -52,7 +54,8 @@
 		<form action="/tagcomparepost/" method="post">
 		{% csrf_token %}
 		  <div class="form-group">
-		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;">Compare similar technology: </p>
+		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;margin-bottom: 2px">Compare similar technology: </p>
+		  	<p class = "text-center" style = "color:#ffffff">Enter a pair of technology like 'firefox' and 'google-chrome' to compare their features.</p>
 			  	{% for key, value in Error.items %}
 		  		{% if value.1 %}
 			    <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
