@@ -8,50 +8,43 @@
     </div>
     <div class="col-8">    
 
+      {% for key,value in ori_tagwikis.items %}
+          <p style = "    
+            color: #fdc317;
+            font-size: 3rem;
+            font-family: fantasy;"> {{key|capfirst}}</p>
+          <p style = "color:#b78b0a">{{value|capfirst}}</p>
+
+          <br>
+
+          <div class="list-group">
 
 
-    {% for key,value in ori_tagwikis.items %}
-      <p style = "    
-      color: #fdc317;
-    font-size: 3rem;
-    font-family: fantasy;"> {{key|capfirst}}</p>
-      <p style = "color:#b78b0a">{{value|capfirst}}</p>
-
-
-    <br>
-
-    <div class="list-group">
-
-
-            <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
-              
-                <tr style = "background-color:#0c5460; ">
-                <th style = "width: 124px;text-align:center;">Similar Tag</th>
-                <th style = "text-align:center">Tag Wiki</th>
-                </tr>
-              
-              <tbody>
-                    {% for simikey,value in tagsWikiDicts.items %}
-                    <tr>
-                    {% if value.1 %}
-                    <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a type = 'button' href = "{% url 'tagcompare' key  simikey %}" style = "color: rgba(0,0,0,.9);background-color: #ffc107;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">{{simikey | capfirst}}</a></th>
-                    {% else %}
-                    <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{simikey | capfirst}}</th>
-                    {% endif %}
-                     <td scope="col" style = "text-align:left;border-top:3px solid #12090e">{{ value.0 | capfirst}}</td>
+                  <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
                     
+                      <tr style = "background-color:#0c5460; ">
+                      <th style = "width: 124px;text-align:center;">Similar Tag</th>
+                      <th style = "text-align:center">Tag Wiki</th>
+                      </tr>
                     
-                    </tr> 
-                  {% endfor %}
-              </tbody>
-             </table>
+                      <tbody>
+                            {% for simikey,value in tagsWikiDicts.items %}
+                            <tr>
+                            {% if value.1 %}
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a type = 'button' href = "{% url 'tagcompare' key  simikey %}" style = "color: rgba(0,0,0,.9);background-color: #ffc107;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">{{simikey | capfirst}}</a></th>
+                            {% else %}
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{simikey | capfirst}}</th>
+                            {% endif %}
+                             <td scope="col" style = "text-align:left;border-top:3px solid #12090e">{{ value.0 | capfirst}}</td>
+                            </tr> 
+                            {% endfor %}
+                      </tbody>
+                   </table>
 
-             <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="background-color: rgba(0,0,0,0);width: 160px;padding-top: 8px;padding-bottom: 40px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;color: #ffc107;">Back to Home</h5></a>
-
-
-    
-    </div>
-    {% endfor %}
+                   <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="background-color: rgba(0,0,0,0);width: 160px;padding-top: 8px;padding-bottom: 40px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;color: #ffc107;">Back to Home</h5></a>
+     
+          </div>
+      {% endfor %}
 
     </div>
     <div class="col">

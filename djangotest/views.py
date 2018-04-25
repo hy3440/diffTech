@@ -157,6 +157,7 @@ def tagcompare(request,tag,simi):
 
     return render(request, 'tagcompare.html',{'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
 
+
 def selecttag(request):
 
     if request.method == "POST":
@@ -165,8 +166,6 @@ def selecttag(request):
 
         SITE = StackAPI('stackoverflow')
         ori_tag = [Tag]
-
-        #TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('simitag')
 
         #get set of similar tags from tagpair database
         Tagpair = TP.objects.filter(tag__contains = '\t'+Tag+'\t') | TP.objects.filter(tag__startswith = Tag+'\t')
@@ -180,13 +179,6 @@ def selecttag(request):
             error = {}
             error['msg'] = ['Similar technology is not found. Try another one.',0]
             return render(request, 'home.html',{'Error':error})
-
-        """
-        tagsFetch = []
-        for tag in TagPairCompares:
-            tagname = tag['simitag']
-            tagsFetch.append(tagname)
-        """
 
         #check the position of the searched tag: 0 or 1 or 2, and locate its similartags
         oritag = Tagpair[0].tag.strip().split('\t')
@@ -322,8 +314,6 @@ def tagcomparepost(request):
 
             
             tagsFetch = [Tag,SimiTag]
-
-
 
 
             tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
