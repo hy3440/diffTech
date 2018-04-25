@@ -123,6 +123,14 @@ def tagcompare(request,tag,simi):
                     if not found:
                         item.append('* (no title is found for this review)')        
         
+        #place others to the end of quality queue
+        others_qua = {}
+        for key in features.keys():
+            if key.lower() == 'others':
+                others_quality = features.pop(key, None)
+                others_qua['others'] = others_quality
+                break
+
         tagsFetch = [Tag,SimiTag]
 
         tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
@@ -147,7 +155,7 @@ def tagcompare(request,tag,simi):
     else:
         raise Http404("Tag pair does not exist")
 
-    return render(request, 'tagcompare.html',{'Features':features,'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
+    return render(request, 'tagcompare.html',{'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
 
 def selecttag(request):
 
@@ -302,8 +310,21 @@ def tagcomparepost(request):
                                 break
                         if not found:
                             item.append('* (no title is found for this review)')
+
+
+            others_qua = {}
+            for key in features.keys():
+                if key.lower() == 'others':
+                    others_quality = features.pop(key, None)
+                    others_qua['others'] = others_quality
+                    break
+
+
             
             tagsFetch = [Tag,SimiTag]
+
+
+
 
             tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
             tagsWikiDict_tag = {}
@@ -327,4 +348,4 @@ def tagcomparepost(request):
             error['msg'] = ['Technology pair is not found. Try another one.',1]
             return render(request, 'home.html',{'Error':error})
 
-        return render(request, 'tagcompare.html',{'Features':features,'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
+        return render(request, 'tagcompare.html',{'Features':features,'Others_qua': others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
