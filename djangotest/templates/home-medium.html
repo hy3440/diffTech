@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container" style = "max-width: 1200px;margin-left: 8%; margin-right: 10%">
+  <div class="row align-items-center" style = "height: 600px;">
+    <!--div class="col-5 align-items-center">
+      
+		<form action="/selecttag/" method="post">
+		{% csrf_token %}
+		  <div class="form-group">
+		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;
+		  	margin-bottom: 2px;">Search similar technology: </p>
+		  	<p class = "text-center" style = "color:#ffffff">
+		  	Enter a technology like 'mysql','maven' to view similar technology.</p>
+			  	{% for key, value in Error.items %}
+		  		{% if not value.1 %}
+			    <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
+			    {% endif %}
+			    {% endfor %}
+		  	<div class="container">
+		  	 	<div class="row align-items-center">
+				    <div class="col">
+				    </div>
+				    <div class="col-6 align-items-center">
+					<input class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a technology"> 
+	  				</div>
+	  				<div class="col">
+			    	</div>
+		  		</div>
+		  	</div>
+
+		  	<br>
+
+		  <div class="container">
+		  <div class="row d-flex justify-content-center">
+				<button  type="submit" class="list-group-item list-group-item-action" style="background-color: #e8ae00;width: 160px;padding-top: 8px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: monospace;">Submit</h5></button>
+
+		  </div>
+		  </div>
+		  </div>
+		</form> 
+
+    </div -->
+    <!--div class="col-1">
+    </div-->
+    <div class="col-8 align-items-center">
+      
+		<form action="/tagcomparepost/" method="post">
+		{% csrf_token %}
+		  <div class="form-group">
+		  	<p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;margin-bottom: 2px">Compare similar technology: </p>
+		  	<p class = "text-center" style = "color:#ffffff">Enter a pair of technology like 'firefox' and 'google-chrome' to compare their features.</p>
+			  	{% for key, value in Error.items %}
+		  		{% if value.1 %}
+			    <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
+			    {% endif %}
+			    {% endfor %}
+
+		  	<div class="container">
+		  	  <div class="row align-items-center">
+			    <div class="col">
+
+			    </div>
+
+			    <div class="col-6 align-items-center">
+
+
+		    	<input id = "oritags" class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a technology">
+		    	<br>
+		    	<input id = "simitags" class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "simi" type="text" placeholder="Enter a technology"> 
+
+  				</div>
+  				<div class="col">
+		    	</div>
+		  	</div>
+		  	</div>
+
+		  	<br>
+
+		  <div class="container">
+		  <div class="row d-flex justify-content-center">
+				<button  type="submit" class="list-group-item list-group-item-action" style="background-color: #e8ae00;width: 160px;padding-top: 8px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: monospace;">Submit</h5></button>
+		  </div>
+		  </div>
+		  </div>
+		</form> 
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
