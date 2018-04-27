@@ -1847,7 +1847,7 @@
 <body style = "background-color:#12090E;color:#5a5a5a">
  
 <div class="container" style = "max-width: 1200px;margin-left: 8%; margin-right: 10%">
-  <div class="row align-items-center" style = "height: 600px;">
+  <div class="row align-items-center" style = "height: 400px;">
     <!--div class="col-5 align-items-center">
       
     <form action="/selecttag/" method="post">
@@ -1888,13 +1888,13 @@
     </div -->
     <!--div class="col-1">
     </div-->
-    <div class="col-11 align-items-center">
+    <div class="col-11 align-items-center" style = "margin-top:50px;">
       
     <form action="/tagcomparepost/" method="post">
     {% csrf_token %}
       <div class="form-group">
         <p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #ffffff;margin-bottom: 2px">Compare similar technology: </p>
-        <p class = "text-center" style = "color:#ffffff">Enter a pair of technology like 'firefox' and 'google-chrome' to compare their features.</p>
+        <p class = "text-center" style = "color:#ffffff">Enter a pair of technology like 'firefox' and 'google-chrome' to compare their features or try out the examples in the table below!</p>
           {% for key, value in Error.items %}
           {% if value.1 %}
           <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
@@ -1935,7 +1935,7 @@
 </div>
 
 <div class="container">
-  <div class="row align-items-center" style = "margin-top: 40px;">
+  <div class="row align-items-center" style = "">
     <div class="col">
     </div>
     <div class="col-12">    
@@ -1945,57 +1945,57 @@
           <div class="list-group">
 
 
-                  <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
+                  <table class="table table-hover table-striped" style = "background-color : #12090e;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
                     
-                      <tr style = "background-color:#0c5460; ">
-                      <th style = "text-align:center;">Tool</th>
-                      <th style = "text-align:center;">Concept</th>
-                      <th style = "text-align:center;">Algorithm</th>
-                      <th style = "text-align:center;">Library/API</th>
-                      <th style = "text-align:center;">Language</th>
+                      <tr style = "background-color:#12090e; border-bottom: 4px solid #ffffff;color: #ffc107;">
+                      <th style = "text-align:center;padding: 6px;">Tool</th>
+                      <th style = "text-align:center;padding: 6px;">Concept</th>
+                      <th style = "text-align:center;padding: 6px;">Algorithm</th>
+                      <th style = "text-align:center;padding: 6px;">Library/API</th>
+                      <th style = "text-align:center;padding: 6px;">Language</th>
                       </tr>
                     
                       <tbody>
                             
                             <tr>
                             
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'mysql' 'postgresql' %}" style = "color: #ffffff;">mysql vs postgresql</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'tcp' 'udp' %}" style = "color: #ffffff;">tcp vs udp</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'aes' 'ras' %}" style = "color: #ffffff;">ras vs aes</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'beautifulsoup' 'lxml' %}" style = "color: #ffffff;">lxml vs beautifulsoup</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'objective-c' 'swift' %}" style = "color: #ffffff;">swift vs objective-c</a></th>                            
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'mysql' 'postgresql' %}" style = "color: #ffffff;">mysql vs postgresql</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'tcp' 'udp' %}" style = "color: #ffffff;">tcp vs udp</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'aes' 'des' %}" style = "color: #ffffff;">des vs aes</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'beautifulsoup' 'lxml' %}" style = "color: #ffffff;">lxml vs beautifulsoup</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'objective-c' 'swift' %}" style = "color: #ffffff;">swift vs objective-c</a></th>                            
                              
                             </tr> 
 
                             <tr>
                             
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'ant' 'maven' %}" style = "color: #ffffff;">ant vs maven</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'get' 'post' %}" style = "color: #ffffff;">post vs get</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'mergesort' 'quicksort' %}" style = "color: #ffffff;">quicksort vs mergesort</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'awt' 'swing' %}" style = "color: #ffffff;">awt vs swing</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'cpython' 'pypy' %}" style = "color: #ffffff;">pypy vs cpython</a></th>                            
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'ant' 'maven' %}" style = "color: #ffffff;">ant vs maven</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'get' 'post' %}" style = "color: #ffffff;">post vs get</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'mergesort' 'quicksort' %}" style = "color: #ffffff;">quicksort vs mergesort</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'awt' 'swing' %}" style = "color: #ffffff;">awt vs swing</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'cpython' 'pypy' %}" style = "color: #ffffff;">pypy vs cpython</a></th>                            
                                   
 
                             </tr> 
 
                             <tr>
                             
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'chrome' 'safari' %}" style = "color: #ffffff;">chrome vs safari</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'sorteddictionary' 'sortedlist' %}" style = "color: #ffffff;">sortedlist vs sorteddictionary</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'gson' 'jackson' %}" style = "color: #ffffff;">jackson vs gson</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>                            
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'google-chrome' 'safari' %}" style = "color: #ffffff;">chrome vs safari</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'sorteddictionary' 'sortedlist' %}" style = "color: #ffffff;">sortedlist vs sorteddictionary</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'gson' 'jackson' %}" style = "color: #ffffff;">jackson vs gson</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>                            
                                   
 
                             </tr> 
 
                             <tr>
                             
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'virtualbox' 'vmware' %}" style = "color: #ffffff;">vmware vs virtualbox</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'memcpy' 'memmove' %}" style = "color: #ffffff;">memcpy vs memmove</a></th>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>                            
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'virtualbox' 'vmware' %}" style = "color: #ffffff;">vmware vs virtualbox</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "{% url 'tagcompare' 'memcpy' 'memmove' %}" style = "color: #ffffff;">memcpy vs memmove</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #12090e"><a  href = "" style = "color: #ffffff;"></a></th>                            
                                   
                             </tr>                             
                             
