@@ -1888,7 +1888,7 @@
     </div -->
     <!--div class="col-1">
     </div-->
-    <div class="col-8 align-items-center">
+    <div class="col-11 align-items-center">
       
     <form action="/tagcomparepost/" method="post">
     {% csrf_token %}
@@ -1903,11 +1903,11 @@
 
         <div class="container">
           <div class="row align-items-center">
-          <div class="col">
+          <div class="col-4">
 
           </div>
 
-          <div class="col-6 align-items-center">
+          <div class="col-4 align-items-center">
 
 
           <input id = "oritags" class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a technology">
@@ -1915,13 +1915,12 @@
           <input id = "simitags" class="form-control form-control-lg" style = "background-color: rgb(18, 9, 14);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "simi" type="text" placeholder="Enter a technology"> 
 
           </div>
-          <div class="col">
+          <div class="col-4">
           </div>
         </div>
         </div>
 
         <br>
-
       <div class="container">
       <div class="row d-flex justify-content-center">
         <button  type="submit" class="list-group-item list-group-item-action" style="background-color: #e8ae00;width: 160px;padding-top: 8px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: monospace;">Submit</h5></button>
@@ -1932,6 +1931,53 @@
 
     </div>
 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row align-items-center" style = "margin-top: 40px;">
+    <div class="col">
+    </div>
+    <div class="col-12">    
+
+          <br>
+
+          <div class="list-group">
+
+
+                  <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
+                    
+                      <tr style = "background-color:#0c5460; ">
+                      <th style = "text-align:center;">Tool</th>
+                      <th style = "text-align:center;">Concept</th>
+                      <th style = "text-align:center;">Algorithm</th>
+                      <th style = "text-align:center;">Library/API</th>
+                      <th style = "text-align:center;">Language</th>
+                      </tr>
+                    
+                      <tbody>
+                            
+                            <tr>
+                            
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a type = 'button' href = "{% url 'tagcompare' 'mysql' 'postgresql' %}" style = "color: rgba(0,0,0,.9);background-color: #ffc107;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">mysql vs postgresql</a></th>
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a type = 'button' href = "{% url 'tagcompare' 'tcp' 'udp' %}" style = "color: rgba(0,0,0,.9);background-color: #ffc107;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">tcp vs udp</a></th>
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a type = 'button' href = "{% url 'tagcompare' 'aes' 'ras' %}" style = "color: rgba(0,0,0,.9);background-color: #ffc107;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">ras vs aes</a></th>
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a type = 'button' href = "{% url 'tagcompare' 'beautifulsoup' 'lxml' %}" style = "color: rgba(0,0,0,.9);background-color: #ffc107;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">lxml vs beautifulsoup</a></th>
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e"><a type = 'button' href = "{% url 'tagcompare' 'objective-c' 'swift' %}" style = "color: rgba(0,0,0,.9);background-color: #ffc107;padding-left: 6px;padding-right: 6px;padding-top: 3px;padding-bottom: 3px;">swift vs objective-c</a></th>                            
+                             
+                            
+
+                            </tr> 
+                            
+                      </tbody>
+                   </table>
+
+     
+          </div>
+
+    </div>
+    <div class="col">
+    </div>
   </div>
 </div>
 
