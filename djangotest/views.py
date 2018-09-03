@@ -6,6 +6,10 @@ from stackapi import StackAPI
 
 # Create your views here.
 
+def google(request):
+
+    return render(request, 'google5a111c130c6d4195.html')
+
 def home(request):
     
     return render(request, 'home.html')

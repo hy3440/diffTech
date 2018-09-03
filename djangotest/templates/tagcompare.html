@@ -14,54 +14,103 @@
       ">
 
         <p style = "
-        color:#ffffff;
+        color:#12090f;
         font-family: fantasy;
         border: 0px;
         font-size:2rem;
         padding:4px;
           "> Aspects </p>
 
-        <div class="list-group">
+        <div class="list-group" style = "overflow: scroll;max-height: 370px">
           {% for key,value in Features.items %}
               <a href="#{{key}}" class="tagcomparemenu list-group-item-action" style = "
-              color:#449b64;
+              color:#FFFFFF;
               font-family: fantasy;
               border: 1px solid #212529;
               padding:4px;
+              background-color:#6D7993;
                 " >{{key|capfirst}}</a>
               {% endfor %}
               {% for key,value in Others_qua.items %}
               <a href="#{{key}}" class="tagcomparemenu list-group-item-action" style = "
-                color:#449b64;
+                color:#FFFFFF;
                 font-family: fantasy;
                 border: 1px solid #212529;
                 padding:4px;
+                background-color:#6D7993;
               " >{{key|capfirst}}</a>
           {% endfor %}
         </div>
+
+        <form action="/tagcomparepost/" method="post">
+        {% csrf_token %}
+          <div class="form-group">
+            <!-- <p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #12090f;margin-bottom: 2px">Compare similar technology: </p> -->
+              {% for key, value in Error.items %}
+              {% if value.1 %}
+              <p class = "text-center" style = "color:#d0081b">{{value.0}}</p>
+              {% endif %}
+              {% endfor %}
+
+            <!-- <div class="container">
+              <div class="row align-items-center">
+                  <div class="col-2">
+                  </div>
+
+                  <div class="col-8 align-items-center">
+                      <div class = "row justify-content-center">
+                          <div class = "col-5 align-items-center">
+                              <input id = "oritags" class="form-control form-control-lg" style = "background-color: rgb(255,255,255);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "tag" type="text" placeholder="Enter a technology">
+                          </div>
+                          <div class = "col-1 align-items-center">
+                              <p class = "text-center" style = "font-size: 2rem; color: #12090f">vs</p>
+                          </div>
+                          <div class = "col-5 align-items-center">
+                              <input id = "simitags" class="form-control form-control-lg" style = "background-color: rgb(255,255,255);border: 2px solid #f8f9fa;color: #f8f9fa;text-align:center;" name = "simi" type="text" placeholder="Enter a technology">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-2">
+                  </div>
+              </div>
+            </div> -->
+
+            <br>
+          <div class="container">
+            <div class="=d-flex flex-column">
+          <!-- <div class="column d-flex justify-content-center"> -->
+          <input id = "oritags" class="form-control form-control-lg" style = "background-color: rgb(255, 255, 255);border: 2px solid #696969;color: #696969;text-align:center;" name = "tag" type="text" placeholder="Enter a technology">
+            <p class = "text-center" style = "font-size: 1.5rem; color: #12090f">vs</p>
+            <input id = "simitags" class="form-control form-control-lg" style = "background-color: rgb(255, 255, 255);border: 2px solid #696969;color: #696969;text-align:center;" name = "simi" type="text" placeholder="Enter a technology">
+            <br>
+            <button  type="submit" class="list-group-item list-group-item-action" style="color:#fffffd;background-color: #96858F;width: 160px;padding-top: 8px;padding-bottom: 4px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy">Compare</h5></button>
+          </div>
+          </div>
+          </div>
+        </form>
       </div>
 
 
     </div>
-      <div class="col-9">    
+      <div class="col-9">
 
         <div class="row justify-content-center">
           <div class="col">
             {% for key,value in TagsWikiDict_tag.items %}
-              <p style = "    
-                  color: #fdc317;
+              <p style = "
+                  color: #96858F;
                   font-size: 3rem;
                   font-family: fantasy;"> {{key|capfirst}}</p>
-              <p style = "color:#b78b0a">{{value|capfirst}}</p>
+              <p style = "color:#000002">{{value|capfirst}}</p>
             {% endfor %}
           </div>
           <div class="col">
             {% for key,value in TagsWikiDict_simi.items %}
-              <p style = "    
-                  color: #fdc317;
+              <p style = "
+                  color: #96858F;
                   font-size: 3rem;
                   font-family: fantasy;"> {{key|capfirst}}</p>
-              <p style = "color:#b78b0a">{{value|capfirst}}</p>
+              <p style = "color:#000002">{{value|capfirst}}</p>
             {% endfor %}
           </div>
         </div>
@@ -73,38 +122,38 @@
                 {% for key, value in Features.items %}
                 <!--p>{{value}}</p-->
                   <a id = "{{key}}">
-                    <p style = "  
-                        color: #4aa76c;
+                    <p style = "
+                        color: #9099A2;
                         font-size: 2rem;
                         font-family: fantasy;
-                        background-color: rgba(0,0,0,.075);
+                        background-color: rgba(255,255,255,.075);
                         padding-left: 0px;
                         padding-right: 20px;
                         width: 600px;
-                        ">{{key|capfirst}}</p> 
+                        ">{{key|capfirst}}</p>
                    </a>
-                   <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
+                   <table class="table table-hover table-striped" style = "background-color : #FFFFFF;margin-bottom:2rem;color:#12090f;border-top:3px solid #12090e;">
 
-                      <tr style = "background-color:#0c5460; ">
+                      <tr style = "background-color:#6D7993; color:#FFFFFF">
                       <th style = "width: 124px;text-align:center;">Quality</th>
                       <th style = "text-align:center">Example</th>
                       </tr>
-                    
+
                       <tbody>
                             {% for quality, examples in value.items %}
 
                             <tr>
                             <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{ quality | capfirst}}</th>
-                            
+
                             <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
                               {% for row in examples %}
                               {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
 
-                                <a href = {{address}} style = "color:#ffffff">
+                                <a href = {{address}} style = "color:#12090f">
                                   <p style = "margin-bottom :3px">"{{ row.0 | capfirst}}"</p>
                                 </a>
                                 <p style = "
-                                    color: #4aa78e;
+                                    color: #96858F;
                                     font-family: monospace;
                                     /* font-weight: 300; */
                                     font-style: italic;
@@ -114,8 +163,8 @@
                               {% endwith %}
                               {% endfor %}
                             </td>
-                             
-                            </tr> 
+
+                            </tr>
                             {% endfor %}
                       </tbody>
                    </table>
@@ -124,37 +173,37 @@
 
                 {% for key, value in Others_qua.items %}
                   <a id = "{{key}}">
-                    <p  style = "  
-                        color: #4aa76c;
+                    <p  style = "
+                        color: #9099A2;
                         font-size: 2rem;
                         font-family: fantasy;
-                        background-color: rgba(0,0,0,.075);
+                        background-color: rgba(255,255,255,.075);
                         padding-left: 0px;
                         padding-right: 20px;
                         width: 600px;
-                        ">{{key|capfirst}}</p> 
+                        ">{{key|capfirst}}</p>
                   </a>
-                  <table class="table table-hover table-striped" style = "background-color : #5C0029;margin-bottom:2rem;color:#ffffff;border-top:3px solid #12090e;">
+                  <table class="table table-hover table-striped" style = "background-color : #FFFFFF;margin-bottom:2rem;color:#12090f;border-top:3px solid #12090e;">
 
-                      <tr style = "background-color:#0c5460; ">
+                      <tr style = "background-color:#6D7993; ">
                       <th style = "width: 124px;text-align:center;">Quality</th>
                       <th style = "text-align:center">Example</th>
                       </tr>
-                    
+
                     <tbody>
                           {% for quality, examples in value.items %}
                             <tr>
                             <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{ quality | capfirst}}</th>
-                            
+
                             <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
                               {% for row in examples %}
                               {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
 
-                                <a href = {{address}} style = "color:#ffffff">
+                                <a href = {{address}} style = "color:#12090f">
                                   <p style = "margin-bottom :3px">"{{ row.0 | capfirst}}"</p>
                                 </a>
                                 <p style = "
-                                    color: #4aa78e;
+                                    color: #96858F;
                                     font-family: monospace;
                                     /* font-weight: 300; */
                                     font-style: italic;
@@ -164,17 +213,17 @@
                               {% endwith %}
                               {% endfor %}
                             </td>
-                             
-                            </tr> 
+
+                            </tr>
                           {% endfor %}
                     </tbody>
                    </table>
                  {% endfor %}
 
-            <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="background-color: rgba(0,0,0,0);width: 160px;padding-top: 8px;padding-bottom: 40px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;color: #ffc107;">Back to Home</h5></a>
+            <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="color:#fffffd;background-color: #96858F;width: 260px;padding-top: 8px;padding-bottom: 20px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;">Back to Home</h5></a>
 
         </div>
-      
+
     </div>
     <div class="col-1">
     </div>
