@@ -237,7 +237,6 @@ def selecttag(request):
 def tagcomparepost(request):
 
 
-
     if request.method == "POST":
 
         ttag = request.POST.get('tag').lower().strip()
