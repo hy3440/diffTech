@@ -59,8 +59,6 @@ def tagcompare(request, twotags):
     # tpair = sorted([tag, simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
-    Tag = 'get'
-    SimiTag = 'post'
     SITE = StackAPI('stackoverflow')
 
     Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
