@@ -1891,7 +1891,7 @@
     </div-->
     <div class="col-11 align-items-center" style = "margin-top:50px;">
 
-    <form action="/tagcomparepost/" method="post">
+    <form action="/tagcompare/" method="post">
     {% csrf_token %}
       <div class="form-group">
         <p class = "text-center" style = "font-size: 2.4rem;font-weight: 300;font-family: fantasy;color:  #000000;margin-bottom: 2px">Compare similar technology: </p>
@@ -1967,14 +1967,17 @@
 
                             <tr>
 
-                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'mysql' 'postgresql' %}" style = "color: #696969;">mysql vs postgresql</a></th>
+                            <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'mysql&postgresql' %}" style = "color: #696969;">mysql vs postgresql</a></th>
+<!--
                             <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'tcp' 'udp' %}" style = "color: #696969;">tcp vs udp</a></th>
                             <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'aes' 'des' %}" style = "color: #696969;">des vs aes</a></th>
                             <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'beautifulsoup' 'lxml' %}" style = "color: #696969;">lxml vs beautifulsoup</a></th>
                             <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'objective-c' 'swift' %}" style = "color: #696969;">swift vs objective-c</a></th>
+-->
 
                             </tr>
 
+<!--
                             <tr>
 
                             <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'ant' 'maven' %}" style = "color: #696969;">ant vs maven</a></th>
@@ -2006,6 +2009,7 @@
                             <th scope="col" style = "padding: 6px;text-align:center;border-top:3px solid #696969"><a  href = "{% url 'tagcompare' 'haskell' 'ocaml'  %}" style = "color: #696969;">haskell vs ocaml</a></th>
 
                             </tr>
+-->
 
                       </tbody>
                    </table>
