@@ -51,7 +51,8 @@ def tagpair(request,Tag):
 
 def tagcompare(request, twotags):
 
-    tpair = sorted(twotags.split("&"))
+    twotags=twotags.split("&")
+    tpair = sorted(twotags)
     # tpair = sorted([tag, simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
