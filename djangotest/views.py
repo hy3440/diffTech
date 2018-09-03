@@ -250,7 +250,9 @@ def tagcomparepost(request):
         if Relation:
             return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
         else:
-            raise Http404("Tag pair does not exist")
+            error = {}
+            error['msg'] = ['Technology pair is not found. Try another one.',1]
+            return render(request, 'home.html',{'Error':error})
 
 def originaltagcomparepost(request):
 
