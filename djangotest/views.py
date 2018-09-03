@@ -46,7 +46,6 @@ def tagpair(request,Tag):
 
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
-def tagcompare(request,tag,simi):
 # def tagcompare(request, twotags=None):
 
     # if twotags is None:
@@ -58,6 +57,7 @@ def tagcompare(request,tag,simi):
     #     twotags = twotags.split("&")
     #     tag = twotags[0]
     #     simi = twotags[1]
+def tagcompare(request,tag,simi):
 
     tpair = sorted([tag, simi])
     Tag = tpair[0]
@@ -241,11 +241,18 @@ def tagcomparepost(request):
 
         ttag = request.POST.get('tag').lower().strip()
         tsimi = request.POST.get('simi').lower().strip()
+        tpair = sorted([ttag, tsimi])
+        Tag = tpair[0]
+        SimiTag = tpair[1]
+        # SITE = StackAPI('stackoverflow')
 
-    return HttpResponseRedirect("/"+ttag+"/"+tsimi+"/")
+        Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
+        if Relation:
+            return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
+        else:
+            raise Http404("Tag pair does not exist")
 
-
-def temptagcomparepost(request):
+def originaltagcomparepost(request):
 
 
     if request.method == "POST":
