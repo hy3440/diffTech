@@ -47,12 +47,12 @@ def tagpair(request,Tag):
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 
-def tagcompare(request,tag,simi):
+def tagcompare(request,pair,twotags):
 # def temptagcompare(request, twotags):
 
-    # twotags=twotags.split("&")
-    # tpair = sorted(twotags)
-    tpair = sorted([tag, simi])
+    twotags=twotags.split("&")
+    tpair = sorted(twotags)
+    # tpair = sorted([tag, simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
     SITE = StackAPI('stackoverflow')
@@ -241,7 +241,7 @@ def tagcomparepost(request):
 
         Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
         if Relation:
-            return HttpResponseRedirect("/pairs/"+Tag+"versus"+SimiTag+"/")
+            return HttpResponseRedirect("/pairs/"+Tag+"&"+SimiTag+"/")
             # return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
         else:
             error = {}
