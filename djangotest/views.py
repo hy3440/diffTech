@@ -48,8 +48,10 @@ def tagpair(request,Tag):
 
 
 # def tagcompare(request,tag,simi):
+def tagcompare(request, tags):
+    return render(request, 'temp.html')
 
-def tagcompare(request, twotags):
+def temptagcompare(request, twotags):
 
     twotags=twotags.split("&")
     tpair = sorted(twotags)
