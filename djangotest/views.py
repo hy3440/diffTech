@@ -47,8 +47,8 @@ def tagpair(request,Tag):
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 
-def tagcompare(request,pair,twotags):
-# def temptagcompare(request, twotags):
+# def tagcompare(request,pair,twotags):
+def temptagcompare(request, twotags):
 
     twotags=twotags.split("&")
     tpair = sorted(twotags)
