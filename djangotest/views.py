@@ -15,6 +15,10 @@ def home(request):
 
     return render(request, 'home.html')
 
+def sitemap(request):
+
+    return render(request, ' fsgd9d4b.txt')
+
 def tagpair(request,Tag):
 
     SITE = StackAPI('stackoverflow')
