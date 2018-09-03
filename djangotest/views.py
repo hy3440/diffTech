@@ -48,7 +48,11 @@ def tagpair(request,Tag):
 
 
 def tagcompare(request,pair,twotags):
+    error = {}
+    error['msg'] = ['Technology pair is not found. Try another one.',1]
+    return render(request, 'home.html',{'Error':error})
 # def tagcompare(request, twotags):
+
 
     twotags=twotags.split("&")
     tpair = sorted(twotags)
