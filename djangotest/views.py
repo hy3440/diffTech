@@ -47,16 +47,12 @@ def tagpair(request,Tag):
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 
-def tagcompare(request,tag,simi):
+# def tagcompare(request,tag,simi):
 
-# def tagcompare(request, twotags):
+def tagcompare(request, twotags):
 
-
-
-    # tpair = sorted(twotags.split("&"))
-
-
-    tpair = sorted([tag, simi])
+    tpair = sorted(twotags.split("&"))
+    # tpair = sorted([tag, simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
     SITE = StackAPI('stackoverflow')
@@ -245,7 +241,8 @@ def tagcomparepost(request):
 
         Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
         if Relation:
-            return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
+            return HttpResponseRedirect("/"+Tag+"&"+SimiTag+"/")
+            # return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
         else:
             error = {}
             error['msg'] = ['Technology pair is not found. Try another one.',1]
