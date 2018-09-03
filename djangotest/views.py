@@ -247,7 +247,7 @@ def tagcomparepost(request):
 
         Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
         if Relation:
-            return HttpResponseRedirect("/pairs/"+Tag+"&"+SimiTag+"/")
+            return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
             # return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
         else:
             error = {}
