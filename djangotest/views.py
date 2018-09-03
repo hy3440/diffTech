@@ -48,7 +48,7 @@ def tagpair(request,Tag):
 
 
 # def tagcompare(request,pair,twotags):
-def temptagcompare(request, twotags):
+def tagcompare(request, twotags):
 
     twotags=twotags.split("&")
     tpair = sorted(twotags)
