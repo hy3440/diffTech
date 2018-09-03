@@ -233,8 +233,18 @@ def selecttag(request):
         return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 
-
 def tagcomparepost(request):
+
+
+    if request.method == "POST":
+
+        ttag = request.POST.get('tag').lower().strip()
+        tsimi = request.POST.get('simi').lower().strip()
+
+    return tagcompare(request, ttag, tsimi)
+
+
+def temptagcomparepost(request):
 
 
     if request.method == "POST":
