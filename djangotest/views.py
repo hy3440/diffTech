@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
 from .models import tagpaircompare, tagpair as TP, relation
-from stackapi import StackAPI 
+from stackapi import StackAPI
 
 # Create your views here.
 
@@ -11,7 +11,7 @@ def google(request):
     return render(request, 'google5a111c130c6d4195.html')
 
 def home(request):
-    
+
     return render(request, 'home.html')
 
 def tagpair(request,Tag):
@@ -19,15 +19,15 @@ def tagpair(request,Tag):
     SITE = StackAPI('stackoverflow')
     ori_tag = [Tag]
 
-    TagPairCompares = tagpaircompare.objects.filter(tag = Tag).values('simitag')
+    TagPairCompares = tagpaircompare.objects.filter(tag=Tag).values('simitag')
     if not TagPairCompares:
         raise Http404("Tag pair does not exist")
-    
+
     tagsFetch = []
     for tag in TagPairCompares:
         tagname = tag['simitag']
         tagsFetch.append(tagname)
-    tagswiki = SITE.fetch('tags/{tags}/wikis',tags = tagsFetch)
+    tagswiki = SITE.fetch('tags/{tags}/wikis', tags=tagsFetch)
     tagsWikiDict = {}
     for item in tagswiki['items']:
         excerpt = item['excerpt']
@@ -42,11 +42,15 @@ def tagpair(request,Tag):
     if '.&' in ori_wiki:
         ori_wiki = excerpt.split('.&')[0]
     ori_tagwiki[Tag] = ori_wiki
-    
+
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
-def tagcompare(request,tag,simi):
+# def tagcompare(request,tag,simi):
+def tagcompare(request, twotags):
 
+    twotags = twotags.split("&")
+    tag = twotags[0]
+    simi = twotags[1]
     tpair = sorted([tag,simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
@@ -59,8 +63,8 @@ def tagcompare(request,tag,simi):
         #now relation only has one row, with format of ['better,faster','1234,2344','that is better, i think it is faster']
         RelationGroups = []
         qualityNew = []
-        exampleIDNew = [] 
-        exampleNew = [] 
+        exampleIDNew = []
+        exampleNew = []
         for eachonegroup in Relation:
             qualityNew += eachonegroup['quality'].strip().split(',')
             exampleIDNew += eachonegroup['example_id'].strip().split(',')
@@ -68,7 +72,7 @@ def tagcompare(request,tag,simi):
 
         for theid, value in enumerate(qualityNew):
             if value != '':
-  
+
                 newdict = {}
                 newdict['quality'] = value
                 newdict['example_id'] = exampleIDNew[theid]
@@ -106,7 +110,7 @@ def tagcompare(request,tag,simi):
 
 
         id_title = {} #id of post and title of that post, put into a dictionary
- 
+
         # if not tested:
         #     raise Http404('lalal')
         IDS = sorted(IDS_noset)
@@ -125,8 +129,8 @@ def tagcompare(request,tag,simi):
                             found = 1
                             break
                     if not found:
-                        item.append('* (no title is found for this review)')        
-        
+                        item.append('* (no title is found for this review)')
+
         #place others to the end of quality queue
         others_qua = {}
         for key in features.keys():
@@ -289,7 +293,7 @@ def tagcomparepost(request):
                     break
 
             id_title = {} #id of post and title of that post, put into a dictionary
- 
+
             IDS = sorted(IDS_noset)
             info = SITE.fetch('/posts/{ids}',ids = IDS, filter = '!9Z(-wsMqT')
             for item in info['items']:
@@ -316,7 +320,7 @@ def tagcomparepost(request):
                     break
 
 
-            
+
             tagsFetch = [Tag,SimiTag]
 
 

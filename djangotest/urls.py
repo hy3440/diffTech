@@ -21,10 +21,10 @@ from djangotest import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.home, name = 'home'),
-    url(r'^google5a111c130c6d4195.html/',views.google, name = 'google'),    
+    url(r'^google5a111c130c6d4195.html/',views.google, name = 'google'),
     url(r'^selecttag/', views.selecttag,name = 'selecttag'),
     url(r'^tagcomparepost/',views.tagcomparepost, name = 'tagcomparepost'),
-    url(r'^([0-9a-zA-Z+.-]+)/$',views.tagpair, name = 'tagpair'),  
-    url(r'^([0-9a-zA-Z+.-]+)/([0-9a-zA-Z+.-]+)/$',views.tagcompare, name = 'tagcompare'),
+    # url(r'^([0-9a-zA-Z+.-]+)/$',views.tagpair, name = 'tagpair'),
+    # url(r'^([0-9a-zA-Z+.-]+)/([0-9a-zA-Z+.-]+)/$',views.tagcompare, name = 'tagcompare'),
+    url(r'^([0-9a-zA-Z+.-]+)/$',views.tagcompare, name = 'tagcompare'),  
 ]
-
