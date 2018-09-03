@@ -242,7 +242,7 @@ def tagcomparepost(request):
         ttag = request.POST.get('tag').lower().strip()
         tsimi = request.POST.get('simi').lower().strip()
 
-    return HttpResponseRedirect("/get/post/")
+    return HttpResponseRedirect("/"+ttag+"/"+tsimi+"/")
 
 
 def temptagcomparepost(request):
