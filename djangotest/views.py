@@ -47,11 +47,11 @@ def tagpair(request,Tag):
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 
-def tagcompare(request,tag,simi):
+def tagcompare(request, tag, simi):
     # error = {}
     # error['msg'] = ['Technology pair is not found. Try another one.',1]
     # return render(request, 'home.html',{'Error':error})
-# def tagcompare(request, twotags):
+    # def tagcompare(request, twotags):
 
 
     # twotags=twotags.split("&")
