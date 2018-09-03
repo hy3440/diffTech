@@ -14,36 +14,36 @@ def home(request):
 
     return render(request, 'home.html')
 
-def tagpair(request,Tag):
-
-    SITE = StackAPI('stackoverflow')
-    ori_tag = [Tag]
-
-    TagPairCompares = tagpaircompare.objects.filter(tag=Tag).values('simitag')
-    if not TagPairCompares:
-        raise Http404("Tag pair does not exist")
-
-    tagsFetch = []
-    for tag in TagPairCompares:
-        tagname = tag['simitag']
-        tagsFetch.append(tagname)
-    tagswiki = SITE.fetch('tags/{tags}/wikis', tags=tagsFetch)
-    tagsWikiDict = {}
-    for item in tagswiki['items']:
-        excerpt = item['excerpt']
-        excerpt = excerpt.strip().split('. ')[0]
-        if '.&' in excerpt:
-            excerpt = excerpt.split('.&')[0]
-        tagsWikiDict[item['tag_name']] = excerpt
-
-    ori_tagwiki = {}
-    ori_wiki = SITE.fetch('tags/{tags}/wikis',tags = ori_tag)['items'][0]['excerpt']
-    ori_wiki = ori_wiki.strip().split('. ')[0]
-    if '.&' in ori_wiki:
-        ori_wiki = excerpt.split('.&')[0]
-    ori_tagwiki[Tag] = ori_wiki
-
-    return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
+# def tagpair(request,Tag):
+#
+#     SITE = StackAPI('stackoverflow')
+#     ori_tag = [Tag]
+#
+#     TagPairCompares = tagpaircompare.objects.filter(tag=Tag).values('simitag')
+#     if not TagPairCompares:
+#         raise Http404("Tag pair does not exist")
+#
+#     tagsFetch = []
+#     for tag in TagPairCompares:
+#         tagname = tag['simitag']
+#         tagsFetch.append(tagname)
+#     tagswiki = SITE.fetch('tags/{tags}/wikis', tags=tagsFetch)
+#     tagsWikiDict = {}
+#     for item in tagswiki['items']:
+#         excerpt = item['excerpt']
+#         excerpt = excerpt.strip().split('. ')[0]
+#         if '.&' in excerpt:
+#             excerpt = excerpt.split('.&')[0]
+#         tagsWikiDict[item['tag_name']] = excerpt
+#
+#     ori_tagwiki = {}
+#     ori_wiki = SITE.fetch('tags/{tags}/wikis',tags = ori_tag)['items'][0]['excerpt']
+#     ori_wiki = ori_wiki.strip().split('. ')[0]
+#     if '.&' in ori_wiki:
+#         ori_wiki = excerpt.split('.&')[0]
+#     ori_tagwiki[Tag] = ori_wiki
+#
+#     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 def tagcompare(request,tag,simi):
 # def tagcompare(request, twotags):
