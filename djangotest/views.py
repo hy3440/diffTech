@@ -48,9 +48,9 @@ def tagpair(request,Tag):
 
 
 def tagcompare(request, tag, simi):
-    # error = {}
-    # error['msg'] = ['Technology pair is not found. Try another one.',1]
-    # return render(request, 'home.html',{'Error':error})
+    error = {}
+    error['msg'] = ['Technology pair is not found. Try another one.',1]
+    return render(request, 'home.html',{'Error':error})
     # def tagcompare(request, twotags):
 
 
@@ -247,7 +247,7 @@ def tagcomparepost(request):
 
         Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
         if Relation:
-            return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
+            return HttpResponseRedirect("/pairs/"+Tag+"&"+SimiTag+"/")
             # return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
         else:
             error = {}
