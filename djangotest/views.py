@@ -189,6 +189,7 @@ def tagcompare(request, twotags):
             temp = []
             temp.append(tag_percents["Year"][i])
             temp.append(tag_percents["TagPercents"][Tag][i])
+            temp.append(tag_percents["TagPercents"][SimiTag][i])
             percents.append(temp)
         percents = serializers.serialize("json", percents)
 
