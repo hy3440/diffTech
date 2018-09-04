@@ -4,9 +4,9 @@ from django.http import HttpResponseRedirect
 from django.http import Http404
 from .models import tagpaircompare, tagpair as TP, relation
 from stackapi import StackAPI
-import json
-from django.core import serializers
-import os
+# import json
+# from django.core import serializers
+# import os
 
 # Create your views here.
 def robots(request):
