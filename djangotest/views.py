@@ -4,9 +4,7 @@ from django.http import HttpResponseRedirect
 from django.http import Http404
 from .models import tagpaircompare, tagpair as TP, relation
 from stackapi import StackAPI
-# import json
-# from django.core import serializers
-# import os
+
 
 # Create your views here.
 def robots(request):
@@ -62,15 +60,9 @@ def tagpair(request,Tag):
 
 
 def tagcompare(request, twotags):
-    # error = {}
-    # error['msg'] = ['Technology pair is not found. Try another one.',1]
-    # return render(request, 'home.html',{'Error':error})
-    # def tagcompare(request, twotags):
-
 
     twotags = twotags.split("VS")
     tpair = sorted(twotags)
-    # tpair = sorted([tag, simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
     SITE = StackAPI('stackoverflow')
@@ -165,7 +157,6 @@ def tagcompare(request, twotags):
         tagsWikiDict_simi = {}
         tagsWikiDict = {}
 
-
         for item in tagswiki['items']:
             excerpt = item['excerpt']
             excerpt = excerpt.strip().split('. ')[0]
@@ -182,18 +173,6 @@ def tagcompare(request, twotags):
             description += key + ", "
         for key in others_qua.keys():
             description += key + "."
-
-        # with open("month_tag_percents.json") as f:
-        #     tag_percents = json.load(f)
-        # percents = []
-        # for i in range(len(tag_percents["Year"])):
-        #     temp = []
-        #     temp.append(tag_percents["Year"][i])
-        #     temp.append(tag_percents["TagPercents"][Tag][i])
-        #     temp.append(tag_percents["TagPercents"][SimiTag][i])
-        #     percents.append(temp)
-        # percents = serializers.serialize("json", percents)
-
 
     else:
         raise Http404("Tag pair does not exist")
