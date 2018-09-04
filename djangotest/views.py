@@ -20,7 +20,7 @@ def home(request):
 
 def generatesitemap(request):
 
-    return render(request, ' sitemap.txt')
+    return render(request, 'sitemap.txt')
 
 def sitemap(request):
 
