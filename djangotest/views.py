@@ -4,6 +4,9 @@ from django.http import HttpResponseRedirect
 from django.http import Http404
 from .models import tagpaircompare, tagpair as TP, relation
 from stackapi import StackAPI
+# import json
+# from django.core import serializers
+# import os
 
 # Create your views here.
 def robots(request):
@@ -161,7 +164,6 @@ def tagcompare(request, twotags):
         tagsWikiDict_tag = {}
         tagsWikiDict_simi = {}
         tagsWikiDict = {}
-
 
         for item in tagswiki['items']:
             excerpt = item['excerpt']
@@ -385,4 +387,4 @@ def originaltagcomparepost(request):
             error['msg'] = ['Technology pair is not found. Try another one.',1]
             return render(request, 'home.html',{'Error':error})
 
-return render(request, 'tagcompare.html',{'Features':features,'Others_qua': others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
+        return render(request, 'tagcompare.html',{'Features':features,'Others_qua': others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
