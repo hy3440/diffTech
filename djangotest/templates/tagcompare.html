@@ -56,7 +56,6 @@
               <div class="row align-items-center">
                   <div class="col-2">
                   </div>
-
                   <div class="col-8 align-items-center">
                       <div class = "row justify-content-center">
                           <div class = "col-5 align-items-center">
@@ -115,6 +114,49 @@
           </div>
         </div>
       <br>
+     <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Year');
+            data.addColumn('number', {{Tag}});
+            data.addColumn('number', {{SimiTag}});
+            data.addRows([
+               ['Jan',  7.0, -0.2],
+               ['Feb',  6.9, 0.8],
+               ['Mar',  9.5,  5.7],
+               ['Apr',  14.5, 11.3],
+               ['May',  18.2, 17.0],
+               ['Jun',  21.5, 22.0],
+               
+               ['Jul',  25.2, 24.8],
+               ['Aug',  26.5, 24.1],
+               ['Sep',  23.3, 20.1],
+               ['Oct',  18.3, 14.1],
+               ['Nov',  13.9,  8.6],
+               ['Dec',  9.6,  2.5]
+            ]);
+            
+            // Set chart options
+            var options = {'title' : 'Tag Trend in Stack Overflow',
+               hAxis: {
+                  title: 'Year'
+               },
+               vAxis: {
+                  title: '% of Stack Overflow questions that month'
+               },   
+               'width':550,
+               'height':400,
+               curveType: 'function'
+            };
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.LineChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
 
         <div class="list-group">
 

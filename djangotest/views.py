@@ -5,7 +5,6 @@ from django.http import Http404
 from .models import tagpaircompare, tagpair as TP, relation
 from stackapi import StackAPI
 
-
 # Create your views here.
 def robots(request):
 
@@ -60,9 +59,15 @@ def tagpair(request,Tag):
 
 
 def tagcompare(request, twotags):
+    # error = {}
+    # error['msg'] = ['Technology pair is not found. Try another one.',1]
+    # return render(request, 'home.html',{'Error':error})
+    # def tagcompare(request, twotags):
+
 
     twotags = twotags.split("VS")
     tpair = sorted(twotags)
+    # tpair = sorted([tag, simi])
     Tag = tpair[0]
     SimiTag = tpair[1]
     SITE = StackAPI('stackoverflow')
@@ -156,6 +161,7 @@ def tagcompare(request, twotags):
         tagsWikiDict_tag = {}
         tagsWikiDict_simi = {}
         tagsWikiDict = {}
+
 
         for item in tagswiki['items']:
             excerpt = item['excerpt']
@@ -379,4 +385,4 @@ def originaltagcomparepost(request):
             error['msg'] = ['Technology pair is not found. Try another one.',1]
             return render(request, 'home.html',{'Error':error})
 
-        return render(request, 'tagcompare.html',{'Features':features,'Others_qua': others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
+return render(request, 'tagcompare.html',{'Features':features,'Others_qua': others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
