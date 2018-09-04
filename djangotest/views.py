@@ -21,7 +21,7 @@ def generatesitemap(request):
 
 def sitemap(request):
 
-    return render(request, 'firstsitemap.xml')
+    return render(request, 'sitemap.xml')
 
 def tagpair(request,Tag):
 
