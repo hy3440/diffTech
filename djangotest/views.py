@@ -172,7 +172,7 @@ def tagcompare(request, twotags):
     else:
         raise Http404("Tag pair does not exist")
 
-    return render(request, 'tagcompare.html',{'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi})
+    return render(request, 'tagcompare.html',{'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi, 'Tag':tag, 'SimiTag':SimiTag})
 
 
 def selecttag(request):
