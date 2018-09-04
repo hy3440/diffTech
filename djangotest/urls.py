@@ -21,6 +21,7 @@ from djangotest import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.home, name = 'home'),
+    url(r'^robots.txt/',views.robots, name = 'robots'),
     url(r'^google5a111c130c6d4195.html/',views.google, name = 'google'),
     url(r'^sitemap.txt/',views.generatesitemap, name='generatesitemap'),
     url(r'^secondsitemap.xml/',views.sitemap,name='sitemap'),

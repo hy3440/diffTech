@@ -6,6 +6,9 @@ from .models import tagpaircompare, tagpair as TP, relation
 from stackapi import StackAPI
 
 # Create your views here.
+def robots(request):
+
+    return render(request, 'robots.txt')
 
 def google(request):
 
