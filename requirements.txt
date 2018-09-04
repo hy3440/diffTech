@@ -10,4 +10,3 @@ StackAPI==0.1.9
 urllib3==1.22
 whitenoise==3.3.1
 Unidecode==1.0.22
-django-chartjs==1.3
