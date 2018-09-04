@@ -10,7 +10,4 @@ StackAPI==0.1.9
 urllib3==1.22
 whitenoise==3.3.1
 Unidecode==1.0.22
-django-nvd3==0.9.7
-python-nvd3==0.14.2
-python-slugify==1.1.4
-django-bower==5.2.0
+django-chartjs==1.3
