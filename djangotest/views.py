@@ -6,6 +6,7 @@ from .models import tagpaircompare, tagpair as TP, relation
 from stackapi import StackAPI
 import json
 from django.core import serializers
+import os
 
 # Create your views here.
 def robots(request):
@@ -182,21 +183,22 @@ def tagcompare(request, twotags):
         for key in others_qua.keys():
             description += key + "."
 
-        with open("month_tag_percents.json") as f:
-            tag_percents = json.load(f)
-        percents = []
-        for i in range(len(tag_percents["Year"])):
-            temp = []
-            temp.append(tag_percents["Year"][i])
-            temp.append(tag_percents["TagPercents"][Tag][i])
-            temp.append(tag_percents["TagPercents"][SimiTag][i])
-            percents.append(temp)
-        percents = serializers.serialize("json", percents)
+        # with open("month_tag_percents.json") as f:
+        #     tag_percents = json.load(f)
+        # percents = []
+        # for i in range(len(tag_percents["Year"])):
+        #     temp = []
+        #     temp.append(tag_percents["Year"][i])
+        #     temp.append(tag_percents["TagPercents"][Tag][i])
+        #     temp.append(tag_percents["TagPercents"][SimiTag][i])
+        #     percents.append(temp)
+        # percents = serializers.serialize("json", percents)
+
 
     else:
         raise Http404("Tag pair does not exist")
 
-    return render(request, 'tagcompare.html',{'Percents':percents,'Description':description,'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi, 'Tag':Tag, 'SimiTag':SimiTag})
+    return render(request, 'tagcompare.html',{'Description':description,'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi, 'Tag':Tag, 'SimiTag':SimiTag})
 
 
 def selecttag(request):
