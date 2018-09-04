@@ -5,8 +5,8 @@
 
 {% load nvd3_tags %}
 <head>
-    {% load_chart charttype chartdata "linewithfocuschart_container" True "%d %b %Y %H" %}
+    {% load_chart charttype chartdata "linechart_container" True "%d %b %Y %H" %}
 </head>
 <body>
-    {% include_container "linewithfocuschart_container" 400 '100%' %}
+    {% include_container "linechart_container" 400 600 %}
 </body>
