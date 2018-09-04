@@ -9,7 +9,7 @@ import random
 import datetime
 import time
 
-def demo_linechart(request):
+def demo_linewithfocuschart(request):
     """
     lineChart page
     """
@@ -31,7 +31,7 @@ def demo_linechart(request):
         'charttype': charttype,
         'chartdata': chartdata
     }
-    return render_to_response('linechart.html', data)
+    return render_to_response('linewithfocuschart.html', data)
 # Create your views here.
 def robots(request):
 
