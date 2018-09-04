@@ -174,12 +174,16 @@ def tagcompare(request, twotags):
         tagsWikiDict_tag[Tag] = tagsWikiDict[Tag]
         tagsWikiDict_simi[SimiTag] = tagsWikiDict[SimiTag]
 
-
+        description = "%d difference aspects: " % (len(features)+1)
+        for key in features.keys():
+            description += key + ", "
+        for key in others_qua.keys():
+            description += key + "."
 
     else:
         raise Http404("Tag pair does not exist")
 
-    return render(request, 'tagcompare.html',{'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi, 'Tag':Tag, 'SimiTag':SimiTag})
+    return render(request, 'tagcompare.html',{'Description':description,'Features':features,'Others_qua':others_qua, 'TagsWikiDict_tag':tagsWikiDict_tag,'TagsWikiDict_simi':tagsWikiDict_simi, 'Tag':Tag, 'SimiTag':SimiTag})
 
 
 def selecttag(request):
