@@ -62,7 +62,7 @@ def tagcompare(request, twotags):
     # def tagcompare(request, twotags):
 
 
-    twotags = twotags.split("&")
+    twotags = twotags.split("VS")
     tpair = sorted(twotags)
     # tpair = sorted([tag, simi])
     Tag = tpair[0]
@@ -253,7 +253,7 @@ def tagcomparepost(request):
 
         Relation = relation.objects.filter(tag = Tag, simitag = SimiTag).values('quality','example_id','example')
         if Relation:
-            return HttpResponseRedirect("/"+Tag+"&"+SimiTag+"/")
+            return HttpResponseRedirect("/"+Tag+"VS"+SimiTag+"/")
             # return HttpResponseRedirect("/"+Tag+"/"+SimiTag+"/")
         else:
             error = {}
