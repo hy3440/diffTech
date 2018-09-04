@@ -17,11 +17,11 @@ def home(request):
 
 def generatesitemap(request):
 
-    return render(request, ' fsgd9d4b.txt')
+    return render(request, ' sitemap.txt')
 
 def sitemap(request):
 
-    return render(request, 'sitemap.xml')
+    return render(request, 'secondsitemap.xml')
 
 def tagpair(request,Tag):
 
