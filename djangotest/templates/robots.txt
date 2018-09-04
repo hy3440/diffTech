@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://difftech.herokuapp.com/secondsitemap.xml
+Sitemap: https://difftech.herokuapp.com/sitemap.txt
