@@ -13,3 +13,4 @@ Unidecode==1.0.22
 django-nvd3==0.9.7
 python-nvd3==0.14.2
 python-slugify==1.1.4
+django-bower==5.2.0
