@@ -116,6 +116,116 @@
 <div id = "container" style = "width: 825px; height: 390px; margin: 0 auto">
       </div>
 
+
+
+        <div class="list-group">
+
+                {% for key, value in Features.items %}
+                <!--p>{{value}}</p-->
+                  <a id = "{{key}}">
+                    <p style = "
+                        color: #9099A2;
+                        font-size: 2rem;
+                        font-family: fantasy;
+                        background-color: rgba(255,255,255,.075);
+                        padding-left: 0px;
+                        padding-right: 20px;
+                        width: 600px;
+                        ">{{key|capfirst}}</p>
+                   </a>
+                   <table class="table table-hover table-striped" style = "background-color : #FFFFFF;margin-bottom:2rem;color:#12090f;border-top:3px solid #12090e;">
+
+                      <tr style = "background-color:#6D7993; color:#FFFFFF">
+                      <th style = "width: 124px;text-align:center;">Quality</th>
+                      <th style = "text-align:center">Example</th>
+                      </tr>
+
+                      <tbody>
+                            {% for quality, examples in value.items %}
+
+                            <tr>
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{ quality | capfirst}}</th>
+
+                            <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
+                              {% for row in examples %}
+                              {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
+
+                                <a href = {{address}} style = "color:#12090f">
+                                  <p style = "margin-bottom :3px">"{{ row.0 | capfirst}}"</p>
+                                </a>
+                                <p style = "
+                                    color: #96858F;
+                                    font-family: monospace;
+                                    /* font-weight: 300; */
+                                    font-style: italic;
+                                    text-align: left;
+                                    margin-bottom: 3px;"
+                                >from question "{{row.2|capfirst}}"</p>
+                              {% endwith %}
+                              {% endfor %}
+                            </td>
+
+                            </tr>
+                            {% endfor %}
+                      </tbody>
+                   </table>
+                 {% endfor %}
+
+
+                {% for key, value in Others_qua.items %}
+                  <a id = "{{key}}">
+                    <p  style = "
+                        color: #9099A2;
+                        font-size: 2rem;
+                        font-family: fantasy;
+                        background-color: rgba(255,255,255,.075);
+                        padding-left: 0px;
+                        padding-right: 20px;
+                        width: 600px;
+                        ">{{key|capfirst}}</p>
+                  </a>
+                  <table class="table table-hover table-striped" style = "background-color : #FFFFFF;margin-bottom:2rem;color:#12090f;border-top:3px solid #12090e;">
+
+                      <tr style = "background-color:#6D7993; ">
+                      <th style = "width: 124px;text-align:center;">Quality</th>
+                      <th style = "text-align:center">Example</th>
+                      </tr>
+
+                    <tbody>
+                          {% for quality, examples in value.items %}
+                            <tr>
+                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{ quality | capfirst}}</th>
+
+                            <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
+                              {% for row in examples %}
+                              {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
+
+                                <a href = {{address}} style = "color:#12090f">
+                                  <p style = "margin-bottom :3px">"{{ row.0 | capfirst}}"</p>
+                                </a>
+                                <p style = "
+                                    color: #96858F;
+                                    font-family: monospace;
+                                    /* font-weight: 300; */
+                                    font-style: italic;
+                                    text-align: left;
+                                    margin-bottom: 3px;"
+                                >from question "{{row.2|capfirst}}"</p>
+                              {% endwith %}
+                              {% endfor %}
+                            </td>
+
+                            </tr>
+                          {% endfor %}
+                    </tbody>
+                   </table>
+                 {% endfor %}
+
+            <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="color:#fffffd;background-color: #96858F;width: 210px;padding-top: 8px;padding-bottom: 1px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;">Back to Home</h5></a>
+
+            <div class="col"></div>
+            <center>Data comes from Stack Exchange with CC-BY-SA-3.0</center>
+        </div>
 <script>
     
 var dic = {
@@ -2367,116 +2477,6 @@ function drawChart() {
 }
 
 </script>
-
-        <div class="list-group">
-
-                {% for key, value in Features.items %}
-                <!--p>{{value}}</p-->
-                  <a id = "{{key}}">
-                    <p style = "
-                        color: #9099A2;
-                        font-size: 2rem;
-                        font-family: fantasy;
-                        background-color: rgba(255,255,255,.075);
-                        padding-left: 0px;
-                        padding-right: 20px;
-                        width: 600px;
-                        ">{{key|capfirst}}</p>
-                   </a>
-                   <table class="table table-hover table-striped" style = "background-color : #FFFFFF;margin-bottom:2rem;color:#12090f;border-top:3px solid #12090e;">
-
-                      <tr style = "background-color:#6D7993; color:#FFFFFF">
-                      <th style = "width: 124px;text-align:center;">Quality</th>
-                      <th style = "text-align:center">Example</th>
-                      </tr>
-
-                      <tbody>
-                            {% for quality, examples in value.items %}
-
-                            <tr>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{ quality | capfirst}}</th>
-
-                            <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
-                              {% for row in examples %}
-                              {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
-
-                                <a href = {{address}} style = "color:#12090f">
-                                  <p style = "margin-bottom :3px">"{{ row.0 | capfirst}}"</p>
-                                </a>
-                                <p style = "
-                                    color: #96858F;
-                                    font-family: monospace;
-                                    /* font-weight: 300; */
-                                    font-style: italic;
-                                    text-align: left;
-                                    margin-bottom: 3px;"
-                                >from question "{{row.2|capfirst}}"</p>
-                              {% endwith %}
-                              {% endfor %}
-                            </td>
-
-                            </tr>
-                            {% endfor %}
-                      </tbody>
-                   </table>
-                 {% endfor %}
-
-
-                {% for key, value in Others_qua.items %}
-                  <a id = "{{key}}">
-                    <p  style = "
-                        color: #9099A2;
-                        font-size: 2rem;
-                        font-family: fantasy;
-                        background-color: rgba(255,255,255,.075);
-                        padding-left: 0px;
-                        padding-right: 20px;
-                        width: 600px;
-                        ">{{key|capfirst}}</p>
-                  </a>
-                  <table class="table table-hover table-striped" style = "background-color : #FFFFFF;margin-bottom:2rem;color:#12090f;border-top:3px solid #12090e;">
-
-                      <tr style = "background-color:#6D7993; ">
-                      <th style = "width: 124px;text-align:center;">Quality</th>
-                      <th style = "text-align:center">Example</th>
-                      </tr>
-
-                    <tbody>
-                          {% for quality, examples in value.items %}
-                            <tr>
-                            <th scope="col" style = "text-align:center;border-top:3px solid #12090e">{{ quality | capfirst}}</th>
-
-                            <td scope="col" style = "text-align:left;border-top:3px solid #12090e">
-                              {% for row in examples %}
-                              {% with "https://stackoverflow.com/questions/"|add:row.1 as address %}
-
-                                <a href = {{address}} style = "color:#12090f">
-                                  <p style = "margin-bottom :3px">"{{ row.0 | capfirst}}"</p>
-                                </a>
-                                <p style = "
-                                    color: #96858F;
-                                    font-family: monospace;
-                                    /* font-weight: 300; */
-                                    font-style: italic;
-                                    text-align: left;
-                                    margin-bottom: 3px;"
-                                >from question "{{row.2|capfirst}}"</p>
-                              {% endwith %}
-                              {% endfor %}
-                            </td>
-
-                            </tr>
-                          {% endfor %}
-                    </tbody>
-                   </table>
-                 {% endfor %}
-
-            <a  href = "{% url 'home' %}" class="list-group-item list-group-item-action" style="color:#fffffd;background-color: #96858F;width: 210px;padding-top: 8px;padding-bottom: 1px;padding-left: 4px;padding-right: 4px;text-align: center;margin: auto;"><h5 class = "text-center" style = "font-size: 1.5rem;font-family: fantasy;font-weight: 500;">Back to Home</h5></a>
-
-            <div class="col"></div>
-            <center>Data comes from Stack Exchange with CC-BY-SA-3.0</center>
-        </div>
-
     </div>
     <div class="col-1">
     </div>
