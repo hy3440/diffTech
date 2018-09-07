@@ -77,7 +77,8 @@ def makedescription(features, others_qua):
     #             description.append(sentence[0].upper()+sentence[1:]+". ")
     #             if len(description) == 3:
     #                 return description.join(" ")
-    return description.join(" ")
+    # return description.join(" ")
+    return "test"
 
 
 def tagcompare(request, twotags):
