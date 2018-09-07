@@ -63,22 +63,21 @@ def tagpair(request,Tag):
 
 def makedescription(features, others_qua):
     description = []
-    # for value in features.values():
-    #     for examples in value.values():
-    #         for row in examples:
-    #             sentence = row[0]
-    #             description.append(sentence[0].upper()+sentence[1:]+". ")
-    #             if len(description) == 3:
-    #                 return description.join(" ")
-    # for value in others_qua.values():
-    #     for examples in value.values():
-    #         for row in examples:
-    #             sentence = row[0]
-    #             description.append(sentence[0].upper()+sentence[1:]+". ")
-    #             if len(description) == 3:
-    #                 return description.join(" ")
-    # return description.join(" ")
-    return "test"
+    for value in features.values():
+        for examples in value.values():
+            for row in examples:
+                sentence = row[0]
+                description.append(sentence[0].upper()+sentence[1:]+". ")
+                if len(description) == 3:
+                    return " ".join(description)
+    for value in others_qua.values():
+        for examples in value.values():
+            for row in examples:
+                sentence = row[0]
+                description.append(sentence[0].upper()+sentence[1:]+". ")
+                if len(description) == 3:
+                    return " ".join(description)
+    return " ".join(description)
 
 
 def tagcompare(request, twotags):
