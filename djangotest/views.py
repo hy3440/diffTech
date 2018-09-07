@@ -67,14 +67,14 @@ def makedescription(features, others_qua):
         for examples in value.values():
             for row in examples:
                 sentence = row[0]
-                description.append(sentence[0].upper()+sentence[1:]+". ")
+                description.append(sentence[0].upper()+sentence[1:]+".")
                 if len(description) == 3:
                     return " ".join(description)
     for value in others_qua.values():
         for examples in value.values():
             for row in examples:
                 sentence = row[0]
-                description.append(sentence[0].upper()+sentence[1:]+". ")
+                description.append(sentence[0].upper()+sentence[1:]+".")
                 if len(description) == 3:
                     return " ".join(description)
     return " ".join(description)
