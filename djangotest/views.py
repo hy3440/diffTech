@@ -61,6 +61,25 @@ def tagpair(request,Tag):
     return render(request, 'tagpair.html',{'tagsWikiDicts':tagsWikiDict,'ori_tagwikis':ori_tagwiki})
 
 
+def makedescription(features, others_qua):
+    description = []
+    for value in features.values():
+        for examples in value.values():
+            for row in examples:
+                sentence = row[0]
+                description.append(sentence[0].upper()+sentence[1:]+". ")
+                if len(description) == 3:
+                    return description.join(" ")
+    for value in others_qua.values():
+        for examples in value.values():
+            for row in examples:
+                sentence = row[0]
+                description.append(sentence[0].upper()+sentence[1:]+". ")
+                if len(description) == 3:
+                    return description.join(" ")
+    return description.join(" ")
+
+
 def tagcompare(request, twotags):
     # error = {}
     # error['msg'] = ['Technology pair is not found. Try another one.',1]
@@ -176,15 +195,7 @@ def tagcompare(request, twotags):
         tagsWikiDict_tag[Tag] = tagsWikiDict[Tag]
         tagsWikiDict_simi[SimiTag] = tagsWikiDict[SimiTag]
 
-        description = []
-        for value in features.values():
-            for examples in value.values():
-                for row in examples:
-                    sentence = row[0]
-                    description.append(sentence[0].upper()+sentence[1:]+". ")
-                    if len(description) == 3:
-                        break
-        description = description.join(" ")
+        description = makedescription(features, others_qua)
 
     else:
         raise Http404("Tag pair does not exist")
