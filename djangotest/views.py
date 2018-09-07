@@ -21,13 +21,13 @@ def home(request):
 
     return render(request, 'home.html')
 
-def generatesitemap(request):
+def sitemap(request):
 
     return render(request, 'sitemap.txt')
 
-def sitemap(request):
+def sitemapmakeup(request):
 
-    return render(request, 'secondsitemap.xml')
+    return render(request, 'sitemapmakeup.xml')
 
 def tagpair(request,Tag):
 
