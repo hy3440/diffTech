@@ -180,7 +180,8 @@ def tagcompare(request, twotags):
         for value in features.values():
             for examples in value.values():
                 for row in examples:
-                    description.append(row[0].upper()+row[1:]+". ")
+                    sentence = row[0]
+                    description.append(sentence[0].upper()+sentence[1:]+". ")
                     if len(description) == 3:
                         break
         description = description.join(" ")
