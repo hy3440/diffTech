@@ -176,11 +176,14 @@ def tagcompare(request, twotags):
         tagsWikiDict_tag[Tag] = tagsWikiDict[Tag]
         tagsWikiDict_simi[SimiTag] = tagsWikiDict[SimiTag]
 
-        description = "%d difference aspects: " % (len(features)+1)
-        for key in features.keys():
-            description += key + ", "
-        for key in others_qua.keys():
-            description += key + "."
+        description = []
+        for value in features.values():
+            for examples in value.values():
+                for row in examples:
+                    description.append(row[0].upper()+row[1:]+". ")
+                    if len(description) == 3:
+                        break
+        description = description.join(" ")
 
     else:
         raise Http404("Tag pair does not exist")
