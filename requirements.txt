@@ -7,6 +7,6 @@ psycopg2==2.7.4
 pytz==2018.3
 requests==2.18.4
 StackAPI==0.1.9
-urllib3==1.22
+urllib3==1.26.5
 whitenoise==3.3.1
 Unidecode==1.0.22
